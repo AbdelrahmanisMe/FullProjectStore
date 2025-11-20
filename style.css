@@ -1,0 +1,240 @@
+body{
+    background-color: ghostwhite;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content:center;
+    align-items: center;
+
+}
+body.light{
+    background-color: ghostwhite;
+    color: black;
+}
+body.light .productcard{
+    background-color: white;
+}
+body.light .addto{
+    background-color: rgb(14, 143, 202);
+    color: black; 
+} 
+/* ----------Dark.css-----*/
+body.dark{
+    background-color: black;
+    color: white;
+}
+body.dark .linkss a{
+    color: white;
+}
+body.dark .search-box{
+    background-color: rgb(0, 0, 0);
+    border:black;
+    color: white;
+}
+body.dark h1{
+    text-shadow: 1px 1px 3px white;
+}
+body.dark .filtering{
+    background-color: black;
+    color: white;
+}
+body.dark .addto{
+    color: white; 
+
+}
+/* -------------------------------- */
+nav {
+    width: 100%;
+    margin: 2px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1.5rem;
+}
+.linkss{
+    display: flex;
+    gap: .7rem;
+}
+.linkss a{
+    color: black;
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-style: italic;
+}
+.search-box{
+    height: 2.1rem;
+    width: 13rem;
+    font-family:'Times New Roman', Times, serif;
+    border: 2px solid white;
+    background-color:rgb(255, 255, 255);
+    border-radius: 15px;
+}
+.search-box:focus-within{
+    outline: none;
+}
+.search-box[type="search"]::-webkit-search-decoration,
+.search-box[type="search"]::-webkit-search-cancel-button,
+.search-box[type="search"]::-webkit-search-results-button,
+.search-box[type="search"]::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+    appearance: none;
+}
+.search-icon{  
+    position: absolute;
+    right:1rem; 
+    top: 7px;
+    width: 2rem;
+    height: 1rem;
+    color: rgb(165, 156, 156);
+    border-radius: 10px;
+    cursor: pointer;
+
+}
+.nav-icons{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+}
+
+h1{
+    text-shadow: 1px 1px 4px gray;
+}
+
+.filtering{
+    height: 2rem;
+    width: 10rem;
+    margin: 2px;
+    margin:10px 0;
+    padding: 3px;
+    border: 1px solid blue;
+    border-radius: 4px;
+}
+.filtering:focus-within{
+    outline: none;
+}
+.filtering option{
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: italic;
+}
+
+#cards{
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content:center;
+    align-items: center;
+}
+.productcard{
+    height: 27rem;
+    width: 19rem;
+    margin: 5px;
+    padding: 20px;
+    display: flex;
+    background-color: rgb(36, 35, 35);
+    flex-direction:column;
+    align-items: center;
+    gap: 7px;
+    border-radius: 10px;
+}
+.img{
+    height: 30%;
+    border-radius: 10px 10px 0 0;
+    align-content: center;
+    position:relative;
+}
+.img img{
+    height: 80%;
+    width:13rem;
+    object-fit: contain;
+}
+.descrip{
+    height:38rem;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
+    gap: 7px;
+    position:relative;
+    text-align: left;
+    border-radius: 0 0 10px 10px;
+}
+.col{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.description{
+    overflow: hidden;
+    display: inline-block;
+    -webkit-line-clamp: 3; /* Limit to 3 lines */
+    line-clamp: 3; 
+    -webkit-box-orient:vertical;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 19rem;
+    /* Optional styling */ 
+}
+.space{
+    display: flex;
+    align-items: center;
+    width: 80%;
+    height:3rem;
+    flex-wrap: wrap;
+    margin: 3px;
+}
+
+.rate{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    height: 1.2rem;
+    width: 6rem;
+    border-radius: 10px;
+}
+.rate .stars{
+    display: flex;
+    gap: 2px;
+}
+.stars i{
+    font-size: .7rem;
+    color: orange;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3px;
+    width: 100%;
+
+}
+.addto{
+    height: 1.8rem;
+    width: 15rem;
+    font-weight: 800;
+    border:1px solid blue;
+    background-color:inherit;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.heart{
+    height: 1.7rem;
+    width: 2rem;
+    font-size: 1rem;
+    border:1px solid blue;
+    background-color:inherit;
+    border-radius: 2px;
+    cursor: pointer;
+}
