@@ -291,7 +291,6 @@ function getdata(){
                           <span class="title">${products[x].title}</span>
                           <description class="description" style="color: gray;">${products[x].description}</description>
                       </div>
-
                           <rating class="rate">
                               <div class="stars">
                                   ${starRate(x)}
@@ -338,3 +337,17 @@ function starRate(x){
         }
         return stars;
 }
+
+
+//-----------------------------------
+let welcome =document.getElementById("welcomeMessage");
+let close_btn=document.getElementById("closeMessage");
+let card=document.getElementById("#cards");
+window.addEventListener("load",()=>{
+  setTimeout(() => {
+    welcome.style="display:block;opacity:1;";
+  }, 2000);
+});
+close_btn.addEventListener("click",()=>{  
+  welcome.style="display:none;";
+});
