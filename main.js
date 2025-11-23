@@ -374,14 +374,16 @@ function  filterandsort(){
   const selectedcategory=category.value;
   if(selectedcategory!="all"){
     fiterproducts=products.filter((product)=>product.category===selectedcategory);
+  }else{
+    filterproducts=products;
   }
 
 
 
   let sortprice = filterprice.value;
-  if(sortprice=="Price-asc"){
+  if(sortprice==="price-asc"){
     fiterproducts=products.sort((a,b)=>{a.price-b.price});
-  }else if(sortprice=="Price-desc"){
+  }else if(sortprice=="rice-desc"){
     fiterproducts=products.sort((a,b)=>{a.price-b.price});
   }else if(sortprice=="rating-desc"){
     fiterproducts=products.sort((a,b)=>{a.rating.rate-b.rating.rate});
