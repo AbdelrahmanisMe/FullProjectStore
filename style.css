@@ -189,10 +189,10 @@ h1{
     align-items: center;
 }
 .productcard{
-    height: 27rem;
-    width: 19rem;
+    height: 20rem;
+    width: 15rem;
     margin: 5px;
-    padding: 20px;
+    padding: 40px;
     display: flex;
     background-color: rgb(36, 35, 35);
     flex-direction:column;

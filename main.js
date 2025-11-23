@@ -267,6 +267,17 @@ const products = [
   },
 ];
 
+//-----------------------------------
+let welcome =document.getElementById("welcomeMessage");
+let close_btn=document.getElementById("closeMessage");
+window.addEventListener("load",()=>{
+  setTimeout(() => {
+    welcome.style="display:block;opacity:1;";
+  }, 1000);
+});
+close_btn.addEventListener("click",()=>{  
+  welcome.style="display:none;";
+});
 //----------light to dark toggle------------------------
 let moon=document.getElementById("ToggletoDark");
 let body=document.body;
@@ -278,26 +289,28 @@ moon.addEventListener("click",()=>{
   }
 });
 //--------------------------------------------------------
-function getdata(){
-  for(x=0;x<products.length;x++){
-        cards.innerHTML +=
-          ` <div class="productcard">
-                  <div class="img">
-                      <img class="img" src=${products[x].image} alt="">
+let card=document.getElementById("cards");
+function getdatadisplay(listofproducts){
+  card.innerHTML=null;
+  listofproducts.forEach((product)=>{
+          card.innerHTML+= 
+          `<div class="productcard">
+                <div class="img">
+                      <img class="img" src=${product.image} alt="">
                   </div>
                   <div  class="descrip">
                       <div class="col">
-                          <category style="opacity:.7;">${products[x].category}</category>
-                          <span class="title">${products[x].title}</span>
-                          <description class="description" style="color: gray;">${products[x].description}</description>
+                          <category style="opacity:.7;">${product.category}</category>
+                          <span class="title">${product.title}</span>
+                          <description class="description" style="color: gray;">${product.description}</description>
                       </div>
                           <rating class="rate">
                               <div class="stars">
-                                  ${starRate(x)}
+                                  ${starRate(product.rating.rate)}
                               </div>
-                              <div class="count-rate" style="font-size:1rem;">(${products[x].rating.count})</div>
+                              <div class="count-rate" style="font-size:1rem;">(${product.rating.count})</div>
                           </rating>
-                          <price class="price" style="font-size: 1.4rem; font-weight:600;">$${products[x].price}</price>
+                          <price class="price" style="font-size: 1.4rem; font-weight:600;">$${product.price}</price>
                           <div class="row">
                               <button class="addto">
                                     <svg
@@ -317,18 +330,23 @@ function getdata(){
                                   <i class="far fa-heart"></i>
                                 </button>
                           </div>
-                  </div>
-            </div>
-            `
-        ;
-      }
-}
-getdata();
-function starRate(x){
+                        </div>
+            </div>`;
+            });
+  if(listofproducts.length==0){
+      card.innerHTML=`<p style="font-size=2rem;font-weight:900;">Product Not Found</p>`;
+      return;
+    }
+    
+
+} 
+getdatadisplay(products);
+//----------------------------------------------
+function starRate(rate){
         let stars="";
         let fullstar,halfstar; 
-        fullstar=Math.floor(products[x].rating.rate);
-        halfstar=products[x].rating.rate %1 !=0;
+        fullstar=Math.floor(rate);
+        halfstar=rate %1 !=0;
         for(let i=0;i<fullstar;i++){
           stars +=`<i class="star fa-solid fa-star"></i>`;
         }
@@ -338,16 +356,41 @@ function starRate(x){
         return stars;
 }
 
+//----------------------------------------------
+let category=document.getElementById("categories");
+let  filterprice=document.getElementById("filterby");
+let searchbox=document.getElementById("search");
 
-//-----------------------------------
-let welcome =document.getElementById("welcomeMessage");
-let close_btn=document.getElementById("closeMessage");
-let card=document.getElementById("#cards");
-window.addEventListener("load",()=>{
-  setTimeout(() => {
-    welcome.style="display:block;opacity:1;";
-  }, 2000);
-});
-close_btn.addEventListener("click",()=>{  
-  welcome.style="display:none;";
-});
+
+function  filterandsort(){
+  let fiterproducts;
+  let searchvalue=searchbox.value.toLowerCase().trim();
+  fiterproducts=products.filter((product)=>{
+    product.title.toLowerCase().includes(searchvalue);
+  })
+
+
+
+  const selectedcategory=category.value;
+  if(selectedcategory!="all"){
+    fiterproducts=products.filter((product)=>product.category===selectedcategory);
+  }
+
+
+
+  let sortprice = filterprice.value;
+  if(sortprice=="Price-asc"){
+    fiterproducts=products.sort((a,b)=>{a.price-b.price});
+  }else if(sortprice=="Price-desc"){
+    fiterproducts=products.sort((a,b)=>{a.price-b.price});
+  }else if(sortprice=="rating-desc"){
+    fiterproducts=products.sort((a,b)=>{a.rating.rate-b.rating.rate});
+  }
+
+  getdatadisplay(fiterproducts);
+}
+filterandsort(products);
+searchbox.addEventListener("input",filterandsort);
+category.addEventListener("change",filterandsort);
+filterprice.addEventListener("change",filterandsort);
+

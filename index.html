@@ -37,7 +37,7 @@
             <a style="text-decoration: none;" href="#">Contact</a>
         </div>
         <div style="position: relative;" >
-            <input class="search-box" placeholder=" Search Products.." type="search" min="2" max="20">
+            <input  id="search"   class="search-box" placeholder=" Search Products.." type="search" min="2" max="20">
                     <svg  class="search-icon"
                     xmlns="http://www.w3.org/2000/svg"
                     width="18"
@@ -101,22 +101,71 @@
     <div>
         <div style="margin-left: 10rem;">
             <select id="categories"  class="filtering" name="All catecories">
-                <option value="all">All Categories..</option>
-                <option value="electoronics">Electoronics</option>
+                <option>All Categories..</option>
+                <option value="electronics">Electronics</option>
                 <option value="men's clothing">Men's Clothing</option>
-                <option value="Women's Clothing">Women's Clothing</option>
+                <option value="women's clothing">Women's Clothing</option>
                 <option value="jewelery">Jewelery</option>
             </select>
         
-            <select class="filtering" name="All catecories">
+            <select id="filterby" class="filtering" name="All catecories">
                 <option  value="featured">Sort by:Featured</option>
                 <option value="Price-asc">Price:Low to High</option>
                 <option value="Price-desc">Price:High to Low</option>
                 <option value="rating-desc">Rating: High to Low</option>
             </select>
         </div>
+
+
+
+
+
+
         <div id="cards">
+            <!-- <div class="productcard">
+                    <div class="img">
+                        <img class="img" src=${products[x].image} alt="">
+                    </div>
+                    <div  class="descrip">
+                        <div class="col">
+                            <category style="opacity:.7;">${products[x].category}</category>
+                            <span class="title">${products[x].title}</span>
+                            <description class="description" style="color: gray;">${products[x].description}</description>
+                        </div>
+                            <rating class="rate">
+                                <div class="stars">
+                                    ${starRate(x)}
+                                </div>
+                                <div class="count-rate" style="font-size:1rem;">(${products[x].rating.count})</div>
+                            </rating>
+                            <price class="price" style="font-size: 1.4rem; font-weight:600;">$${products[x].price}</price>
+                            <div class="row">
+                                <button class="addto">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="14"
+                                            height="14"   
+                                            fill="currentColor"
+                                            viewBox="0 0 16 16"
+                                            >
+                                            <path
+                                                d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+                                            />
+                                        </svg>
+                                        Add to card
+                                </button>
+                                    <button class="heart">
+                                    <i class="far fa-heart"></i>
+                                    </button>
+                            </div>
+                    </div>
+            </div> -->
         </div>
+    
+    
+    
+    
+    
     </div>
 
     
