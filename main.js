@@ -291,52 +291,54 @@ moon.addEventListener("click",()=>{
 //--------------------------------------------------------
 let card=document.getElementById("cards");
 function getdatadisplay(listofproducts){
+  console.log(listofproducts);
   card.innerHTML=null;
-  listofproducts.forEach((product)=>{
-          card.innerHTML+= 
-          `<div class="productcard">
-                <div class="img">
-                      <img class="img" src=${product.image} alt="">
-                  </div>
-                  <div  class="descrip">
-                      <div class="col">
-                          <category style="opacity:.7;">${product.category}</category>
-                          <span class="title">${product.title}</span>
-                          <description class="description" style="color: gray;">${product.description}</description>
-                      </div>
-                          <rating class="rate">
-                              <div class="stars">
-                                  ${starRate(product.rating.rate)}
-                              </div>
-                              <div class="count-rate" style="font-size:1rem;">(${product.rating.count})</div>
-                          </rating>
-                          <price class="price" style="font-size: 1.4rem; font-weight:600;">$${product.price}</price>
-                          <div class="row">
-                              <button class="addto">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="14"
-                                        height="14"   
-                                        fill="currentColor"
-                                        viewBox="0 0 16 16"
-                                        >
-                                        <path
-                                            d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
-                                        />
-                                    </svg>
-                                    Add to card
-                              </button>
-                                <button class="heart">
-                                  <i class="far fa-heart"></i>
-                                </button>
-                          </div>
-                        </div>
-            </div>`;
-            });
   if(listofproducts.length==0){
       card.innerHTML=`<p style="font-size=2rem;font-weight:900;">Product Not Found</p>`;
-      return;
-    }
+      
+    }else{
+      listofproducts.forEach((product)=>{
+              card.innerHTML+= 
+              `<div class="productcard">
+                    <div class="img">
+                          <img class="img" src=${product.image} alt="">
+                      </div>
+                      <div  class="descrip">
+                          <div class="col">
+                              <category style="opacity:.7;">${product.category}</category>
+                              <span class="title">${product.title}</span>
+                              <description class="description" style="color: gray;">${product.description}</description>
+                          </div>
+                              <rating class="rate">
+                                  <div class="stars">
+                                      ${starRate(product.rating.rate)}
+                                  </div>
+                                  <div class="count-rate" style="font-size:1rem;">(${product.rating.count})</div>
+                              </rating>
+                              <price class="price" style="font-size: 1.4rem; font-weight:600;">$${product.price}</price>
+                              <div class="row">
+                                  <button class="addto">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="14"
+                                            height="14"   
+                                            fill="currentColor"
+                                            viewBox="0 0 16 16"
+                                            >
+                                            <path
+                                                d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+                                            />
+                                        </svg>
+                                        Add to card
+                                  </button>
+                                    <button class="heart">
+                                      <i class="far fa-heart"></i>
+                                    </button>
+                              </div>
+                            </div>
+                </div>`;
+                });
+      }
     
 
 } 
@@ -374,8 +376,8 @@ function  filterandsort(){
   const selectedcategory=category.value;
   if(selectedcategory!="all"){
     fiterproducts=products.filter((product)=>product.category===selectedcategory);
-  }else{
-    filterproducts=products;
+  }else if(selectedcategory=="all"){
+    fiterproducts=products;
   }
 
 
@@ -391,7 +393,6 @@ function  filterandsort(){
 
   getdatadisplay(fiterproducts);
 }
-filterandsort(products);
 searchbox.addEventListener("input",filterandsort);
 category.addEventListener("change",filterandsort);
 filterprice.addEventListener("change",filterandsort);

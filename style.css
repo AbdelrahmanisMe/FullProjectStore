@@ -1,11 +1,11 @@
 .message{
-    height:13.5rem;
-    width: 23rem;
+    height:13rem;
+    width: 19.5rem;
     justify-self: center;
     text-align:center;
     color: black;
     background-color:white;
-    border-radius: 17px;
+    border-radius: 12px;
     box-shadow: 15px 15px 80px 15px rgba(0, 0, 0, 0.2);
     transition: all 1s;
     position:absolute;
@@ -35,16 +35,17 @@
         left: 0;
     }
     .image img{
-        height:5rem;
-        width: 5rem;
+        height:4.5rem;
+        width: 4.5rem;
     }
     button{
         margin-left: -13rem;
         height: 1.9rem;
-        width: 8rem;
+        width: 5.7rem;
         color:whitesmoke;
         font-style: italic;
-        font-size: 1.2rem;
+        font-size: 1rem;
+        font-weight: 900;
         background-color: rgb(0, 0, 0);
         border: 1px solid black;
         border-radius: 15px;
