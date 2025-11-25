@@ -281,13 +281,23 @@ close_btn.addEventListener("click",()=>{
 //----------light to dark toggle------------------------
 let moon=document.getElementById("ToggletoDark");
 let body=document.body;
+
 moon.addEventListener("click",()=>{
   if(body.classList.contains("light")){
     body.classList.replace("light","dark");
+    localStorage.setItem("theme","dark");
   }else{
-    body.classList.replace("dark","light")
+    body.classList.replace("dark","light");
+    localStorage.setItem("theme","light");
   }
 });
+//---------------savecolormood in local storage- cookies-----------
+    const savetheme=localStorage.getItem("theme");
+    if(savetheme=="dark"){
+        body.classList.replace("light","dark");
+    }else if(savetheme=="light"){
+        body.classList.replace("dark","light");
+    }
 //--------------------------------------------------------
 let card=document.getElementById("cards");
 function getdatadisplay(listofproducts){
@@ -362,8 +372,18 @@ function starRate(rate){
 let category=document.getElementById("categories");
 let  filterprice=document.getElementById("filterby");
 let searchbox=document.getElementById("search");
+const saveCatego=localStorage.getItem("savecategory");
 
+if(saveCatego!=undefined){
+  category.value=saveCatego;
+}else{
+  category.value="all";
+}
 
+setTimeout(() => {
+  localStorage.removeItem("savecategory");
+},60000);
+filterandsort();
 function  filterandsort(){
   let fiterproducts;
   let searchvalue=searchbox.value.toLowerCase().trim();
@@ -374,6 +394,7 @@ function  filterandsort(){
 
 
   const selectedcategory=category.value;
+  localStorage.setItem("savecategory",selectedcategory);
   if(selectedcategory!="all"){
     fiterproducts=products.filter((product)=>product.category===selectedcategory);
   }else if(selectedcategory=="all"){
