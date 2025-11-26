@@ -324,7 +324,7 @@ h1{
 }
 
 .message{
-    height:11rem;
+    height:14rem;
     width: 18rem;
 }
 .welcome-message{
@@ -333,6 +333,4 @@ h1{
         width: 4rem;
     }
 }
-
-
 }
