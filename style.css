@@ -295,7 +295,7 @@ h1{
     cursor: pointer;
 }
 
-@media(max-width:380px){
+@media(max-width:900px){
     nav{
         display: flex;
         flex-direction: column;
@@ -322,4 +322,23 @@ h1{
 .title{
     display: none;
 }
+
+.message{
+    height:11rem;
+    width: 18rem;
+    margin-left: -2.6rem;
+}
+.welcome-message{
+    .image img{
+        height:4rem;
+        width: 4rem;
+    }
+    button{
+        margin-top: -2.5rem;
+        margin-left: 1px;
+    }
+}
+
+
+
 }
