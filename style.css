@@ -326,19 +326,13 @@ h1{
 .message{
     height:11rem;
     width: 18rem;
-    margin-left: -2.6rem;
 }
 .welcome-message{
     .image img{
         height:4rem;
         width: 4rem;
     }
-    button{
-        margin-top: -2.5rem;
-        margin-left: 1px;
-    }
 }
-
 
 
 }
