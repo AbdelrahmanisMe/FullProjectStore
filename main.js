@@ -181,7 +181,6 @@ let count=document.querySelector(".cart-count");
 let cartbasket= JSON.parse(localStorage.getItem("cart")) || [];
 count.innerText=cartbasket.length;
 localStorage.setItem("cart-len",cartbasket.length);
-console.log(localStorage.getItem("cart-len"))
 function addcart(id){
     let item=products.find((p)=> p.id==id);
     if(!item){return;}

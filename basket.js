@@ -1,11 +1,12 @@
 let items= document.querySelector(".grid");
 let countt= document.querySelector(".cart2-count");
 let  basket= JSON.parse(localStorage.getItem("cart"));
+let total=0;
 function displayorder(basket){
+    total=0;
     items.innerHTML=null;
-    if(basket.lenght==0){
-        items.innerHTML=`<p>make orders</p>`;
-        return;
+    if(localStorage.getItem("cart").length==0){
+        items.innerHTML=`<p>empty cart</p>`;
     }
     basket.forEach( (product ) => {
         items.innerHTML+=
@@ -15,11 +16,12 @@ function displayorder(basket){
                             <img src="${product.image}" alt="">
                         </div>
                         <div>
-                            <p style="font-size: 1.2rem;font-weight: 900; width:14rem">${product.title}</p>
+                            <p style="font-size: 1.2rem;font-weight: 700; width:15rem">${product.title}</p>
                             <p  style="font-size: 1 rem;margin-top:-1rem; color:rgb(175, 171, 171);">${product.category}</p>
+                            <div style="margin-top:-0.8rem;">$${product.price}</div>    
                         </div>
                     </div>
-                    <div>$${product.price}</div>
+
                     <div>${product.quantity}</div>
                     <div class="del"  onclick="removeitem(${product.id})" >
                             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0,0,256,256">
@@ -28,10 +30,14 @@ function displayorder(basket){
                     </div>
                 </div>
                         `;
+        total+=product.price;
+        
     });
+    return total;
 }
+total=displayorder(basket);
 displayorder(basket);
-//--------------------------------------------
+//------------remove oneitem--------------------------------
 let delet = document.querySelector(".del");
 let  removeitem = (id)=>{
         Swal.fire({
@@ -54,9 +60,17 @@ let  removeitem = (id)=>{
         }
         });
 }
-//----------------------------------------
+//---------removebasketcart-------------------------------
 function removecart(){
-    localStorage.setItem("cart",null);
-    basket=JSON.parse(localStorage.getItem("cart"))
+    localStorage.setItem("cart","[]");
+    basket=JSON.parse(localStorage.getItem("cart"));
     displayorder(basket);
+}
+//--------------------------------------------------------
+function pay(){
+    Swal.fire({
+        icon: "success",
+        title: "Order Successful!",
+        text: `thank you for your purchases Total: $${total}`,
+});
 }
