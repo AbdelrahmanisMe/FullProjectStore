@@ -87,7 +87,7 @@ function getdatadisplay(listofproducts){
                               </rating>
                               <price class="price" style="font-size: 1.4rem; font-weight:600;">$${product.price}</price>
                               <div class="row">
-                                  <button onclick="addcart(${product.id})" class="addto">
+                                  <button onclick="exist(${product.id})" class="addto">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             width="14"
@@ -177,6 +177,38 @@ filterprice.addEventListener("change",filterandsort);
 
 
 //----------------add to cartbasket---------------------
-function addcart(x){
-  console.log(x);
+let count=document.querySelector(".cart-count");
+let cartbasket= JSON.parse(localStorage.getItem("cart")) || [];
+count.innerText=cartbasket.length;
+localStorage.setItem("cart-len",cartbasket.length);
+console.log(localStorage.getItem("cart-len"))
+function addcart(id){
+    let item=products.find((p)=> p.id==id);
+    if(!item){return;}
+      cartbasket.push({
+      ...item,
+      quantity:1,
+      });
+      Swal.fire({
+      title: "prodect add",
+      text:`${item.title}`,
+      icon: "success",
+      draggable: true
+      });      
+      localStorage.setItem("cart",JSON.stringify(cartbasket));
+      count.textContent=cartbasket.length;
+}
+function exist(id){
+  let exist=cartbasket.find((item)=> item.id==id);
+    if(exist){
+      Swal.fire({
+      title: "Prodect already ON",
+      text:`${exist.title}`,
+      icon: "warning",
+      draggable: true
+      });
+    }
+    else{
+        addcart(id);
+      }
 }

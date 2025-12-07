@@ -1,0 +1,109 @@
+#basket a{
+    position:relative;
+    color:black;
+    span{
+        position: absolute;
+        top: -15px;
+        width: 0.9rem;
+        height:1rem;
+        padding-left: 2px;
+        font-weight: 700;
+        border-radius: 50%;
+    }
+}
+.titletable{
+    display: flex;
+    justify-content: space-around;
+    align-items:center;
+    height: 3rem;
+    width: 20rem;
+    span{
+        font-size: 1.6rem;
+        font-style: italic;
+        font-weight: 900;
+        color:blueviolet;
+    }
+}
+.grid{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    height: 24rem;
+    width: 35rem;
+    gap: 5px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    background-color: white;
+    border-radius:10px;
+    box-shadow: 0px 1px 5px rgb(231, 231, 231);
+}
+
+.grid::-webkit-scrollbar {
+  width: 9px; /* for vertical scrollbars */
+  height: 5px; /* for horizontal scrollbars */
+  color: rgb(175, 175, 175);
+}
+
+/* Target the track */
+.grid::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+/* Target the thumb (handle) */
+.grid::-webkit-scrollbar-thumb{
+    background: #ffffff;
+    border-radius: 10px;
+}
+
+.grid::-webkit-scrollbar-thumb:hover{
+    background: rgb(218, 213, 213);
+}
+.item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 10px;
+    height: 6rem;
+    width: 20rem;
+    gap: 35px;
+}
+
+.row{
+    display: flex;
+    width: 23rem;
+}
+
+.imge{
+    margin-right: 1rem;
+    img{
+        height: 5rem;
+        width: 5rem;
+    }
+}
+
+
+.del{
+    cursor: pointer;
+}
+
+
+.btn{
+    margin-top: 6px;
+    padding: 5px;
+    button{
+        height: 2.6rem;
+        width: 9rem;
+        background-color: rgb(0, 0, 0);
+        border: 1px solid  rgb(0, 0, 0);
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        color:rgb(255, 255, 255);
+        font-style: italic;
+        cursor: pointer;
+    }
+}

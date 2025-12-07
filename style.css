@@ -120,6 +120,19 @@ nav {
     font-weight: 700;
     font-style: italic;
 }
+#basket a{
+    position:relative;
+    color:black;
+    span{
+        position: absolute;
+        top: -15px;
+        width: 0.9rem;
+        height:1rem;
+        padding-left: 2px;
+        font-weight: 700;
+        border-radius: 50%;
+    }
+}
 .search-box{
     height: 2.1rem;
     width: 13rem;
@@ -341,7 +354,7 @@ h1{
     display: flex;
     justify-content: center;
 }
-.loader {
+.loader{
   width: 5rem;
   height: 5rem;
   border-radius: 50%;
@@ -360,3 +373,4 @@ h1{
     transform: rotate(360deg);
   }
 } 
+/* ------------------------- */
