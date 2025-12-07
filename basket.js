@@ -1,7 +1,12 @@
 let items= document.querySelector(".grid");
 let countt= document.querySelector(".cart2-count");
 let  basket= JSON.parse(localStorage.getItem("cart"));
-function displayorder(){
+function displayorder(basket){
+    items.innerHTML=null;
+    if(basket.lenght==0){
+        items.innerHTML=`<p>make orders</p>`;
+        return;
+    }
     basket.forEach( (product ) => {
         items.innerHTML+=
                 `<div class="item">
@@ -25,9 +30,33 @@ function displayorder(){
                         `;
     });
 }
-displayorder();
+displayorder(basket);
 //--------------------------------------------
 let delet = document.querySelector(".del");
 let  removeitem = (id)=>{
-    console.log(basket[id]);
+        Swal.fire({
+        title: "Remove it?",
+        text: "Are you sure you want to reomove this item from cart",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, Remove"
+        }).then((result) => {
+        if (result.isConfirmed) {
+            basket=basket.filter(product => product.id!=id);
+            localStorage.setItem("cart",JSON.stringify(basket));
+            basket=JSON.parse(localStorage.getItem("cart"))
+            displayorder(basket);
+        }
+        else{
+            return;
+        }
+        });
+}
+//----------------------------------------
+function removecart(){
+    localStorage.setItem("cart",null);
+    basket=JSON.parse(localStorage.getItem("cart"))
+    displayorder(basket);
 }

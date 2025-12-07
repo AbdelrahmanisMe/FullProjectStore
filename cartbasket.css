@@ -29,7 +29,7 @@
     flex-direction: column;
     justify-content: flex-start;
     flex-wrap: nowrap;
-    height: 24rem;
+    height: 20rem;
     width: 35rem;
     gap: 5px;
     overflow-x: hidden;
@@ -96,13 +96,13 @@
     button{
         height: 2.6rem;
         width: 9rem;
-        background-color: rgb(0, 0, 0);
-        border: 1px solid  rgb(0, 0, 0);
+        background-color: rgb(255, 255, 255);
+        border: 1px solid  rgb(255, 255, 255);
         border-radius: 20px;
         font-weight: 600;
         font-size: 1.1rem;
         font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        color:rgb(255, 255, 255);
+        color:rgb(0, 0, 0);
         font-style: italic;
         cursor: pointer;
     }
