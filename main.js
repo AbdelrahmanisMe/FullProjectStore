@@ -203,8 +203,8 @@ function exist(id){
       Swal.fire({
       title: "Prodect already ON",
       text:`${exist.title}`,
-      icon: "warning",
-      draggable: true
+      icon: "info",
+      draggable: false,
       });
     }
     else{

@@ -1,3 +1,51 @@
+body{
+    background-color: ghostwhite;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content:center;
+    align-items: center;
+
+}
+body.light{
+    background-color: ghostwhite;
+    color: black;
+}
+body.light .productcard{
+    background-color: white;
+}
+body.light .addto{
+    background-color: rgb(14, 143, 202);
+    color: black; 
+} 
+/* ----------Dark.css-----*/
+body.dark{
+    background-color: black;
+    color: white;
+}
+body.dark .linkss a{
+    color: white;
+}
+body.dark .search-box{
+    background-color: rgb(0, 0, 0);
+    border:black;
+    color: white;
+}
+body.dark h1{
+    text-shadow: 1px 1px 3px white;
+}
+body.dark .filtering{
+    background-color: black;
+    color: white;
+}
+body.dark .addto{
+    color: white; 
+
+}
+
 #basket a{
     position:relative;
     color:black;
@@ -26,6 +74,18 @@
         color:white;
     }
 }
+.quantity{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    button{
+        background-color:white;
+        border: 1px solid white;
+        cursor: pointer;
+        font-weight: 900;
+        font-size: 1rem;
+    }
+}
 .grid{
     display: flex;
     flex-direction: column;
@@ -37,7 +97,7 @@
     overflow-x: hidden;
     overflow-y: scroll;
     scroll-behavior: smooth;
-    background-color: rgb(226, 223, 223);
+    background-color: rgb(255, 255, 255);
     border-radius:0  0 10px 10px;
     box-shadow: 0px 1px 5px rgb(231, 231, 231);
 }
@@ -85,14 +145,15 @@
 .imge{
     margin-right: 1rem;
     img{
-        height: 5.4rem;
-        width: 4.5rem;
+        height: 6rem;
+        width: 4.7rem;
     }
 }
 
 
 .del{
     cursor: pointer;
+    margin-left: -2rem;
 }
 
 
