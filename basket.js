@@ -44,9 +44,9 @@ function displayorder(basket){
                     </div>
  
                     <div class="quantity" style="color:black;">
-                            <button style="font-size:1.3rem">-</button>
-                            <p>${product.quantity}</p> 
-                            <button>+</button>
+                            <button  onclick="decrease(${product.id})" style="font-size:1.3rem">-</button>
+                            <p id="quantity">${product.quantity}</p> 
+                            <button onclick="increase(${product.id})">+</button>
                     </div>
                     <div class="del"  onclick="removeitem(${product.id})" >
                             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0,0,256,256">
@@ -55,13 +55,36 @@ function displayorder(basket){
                     </div>
                 </div>
                         `;
-        total+=product.price;
+        total+=product.price*product.quantity;
         
     });
     return total;
 }
 total=displayorder(basket);
 displayorder(basket);
+//------------------decrease Quantity------increase---------
+let quant =document.getElementById("quantity");
+function increase(id){
+    basket.find(p => {
+        if(p.id==id)
+        {   p.quantity+=1;
+            quant.innerText=p.quantity;
+        };
+    });
+}
+function decrease(id){
+    basket.find(p => {
+        if(p.id==id)
+        {   if(p.quantity>1){
+                p.quantity-=1;
+                quant.innerText=p.quantity;
+            }else{
+                return;
+            }
+        };
+        
+    });
+}
 //------------remove oneitem--------------------------------
 let delet = document.querySelector(".del");
 let  removeitem = (id)=>{
