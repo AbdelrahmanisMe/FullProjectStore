@@ -67,22 +67,19 @@ let quant =document.getElementById("quantity");
 function increase(id){
     basket.find(p => {
         if(p.id==id)
-        {   p.quantity+=1;
-            quant.innerText=p.quantity;
-        };
+        {  
+            p.quantity<15?p.quantity+=1:p.quantity=15;
+        }
     });
+    displayorder(basket);
 }
 function decrease(id){
     basket.find(p => {
         if(p.id==id)
-        {   if(p.quantity>1){
-                p.quantity-=1;
-                quant.innerText=p.quantity;
-            }else{
-                return;
-            }
+        {   
+            p.quantity>1?p.quantity-=1:p.quantity=1;
         };
-        
+        displayorder(basket);
     });
 }
 //------------remove oneitem--------------------------------
