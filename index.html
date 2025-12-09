@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
     <title>Ecommerce ProductsShow</title>
 </head>
@@ -12,7 +13,6 @@
 <body class="light">
     
     <div class="welcome-message" id="welcomeMessage" style="opacity:1;">
-        
         <div class="message">
                 <div class="image">
                     <img src="smile.png"  alt="">
@@ -25,9 +25,9 @@
             
         </div>
     </div>
-
+    
     <nav>
-        <p  class="prand"   style="font-size: 1.5rem; font-weight:bolder; font-family: 'Segoe UI';">Shop<span style="color: blue;">Hub</span></p>
+        <p  class="prand"   style="font-size: 1.7rem; font-weight:900; font-family: 'Segoe UI';">Shop<span style="color: blue;">Hub</span></p>
         <div class="linkss">
             <a style="text-decoration: none;" href="#">Home</a>
             <a style="text-decoration: none;"  href="#">Products</a>
@@ -96,9 +96,19 @@
 
     </nav>
 
+        <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="images/slider2.jpg"/></div>
+            <div class="swiper-slide"><img src="images/slider4.jpg"/></div>
+            <div class="swiper-slide"><img src="images/slider5.jpg"/></div>
+            <div class="swiper-slide"><img src="images/slider6.jpg"/></div>
+            <div class="swiper-pagination"></div>
+    </div>
+
+
+
     <div class="title">
-        <h1>Our Product</h1>
-        <hr style=" border: 1px solid; width: 6rem;margin-top: -.7rem; ">
+        <h1>Our Products</h1>
     </div>
 
     <div>
@@ -171,7 +181,7 @@
     
     
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="main.js"></script>
 </body>
