@@ -32,20 +32,17 @@ getproducts();
 let welcome =document.getElementById("welcomeMessage");
 let close_btn=document.getElementById("closeMessage");
 let hi=0;
-// if(hi===1){
-//     window.removeEventListener("load",timeout);
-// }else{
-//     const timeout=()=>
-//           setTimeout(() => {
-//             welcome.style="display:block;opacity:1;";
-//             localStorage.setItem("message",1);
-//             hi=localStorage.getItem("message");
-//           }, 1000);
-//     window.addEventListener("load",timeout);
-// }
-
-
-
+if(hi===1){
+    window.removeEventListener("load",timeout);
+}else{
+    const timeout=()=>
+          setTimeout(() => {
+            welcome.style="display:block;opacity:1;";
+            localStorage.setItem("message",1);
+            hi=localStorage.getItem("message");
+          }, 1000);
+    window.addEventListener("load",timeout);
+}
 close_btn.addEventListener("click",()=>{  
   welcome.style="display:none;";
 });
@@ -207,6 +204,7 @@ function addcart(id){
       localStorage.setItem("cart",JSON.stringify(cartbasket));
       count.textContent=cartbasket.length;
 }
+
 function exist(id){
   let exist=cartbasket.find((item)=> item.id==id);
     if(exist){

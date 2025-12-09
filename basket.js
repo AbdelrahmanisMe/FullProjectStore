@@ -20,15 +20,11 @@ moon.addEventListener("click",()=>{
     }
 //--------------------------------------------------------
 let items= document.querySelector(".grid");
-let countt= document.querySelector(".cart2-count");
 let  basket= JSON.parse(localStorage.getItem("cart"));
 let total=0;
 function displayorder(basket){
     total=0;
     items.innerHTML=null;
-    if(localStorage.getItem("cart").length==0){
-        items.innerHTML=`<p>empty cart</p>`;
-    }
     basket.forEach( (product ) => {
         items.innerHTML+=
                 `<div class="item">
@@ -58,6 +54,9 @@ function displayorder(basket){
         total+=product.price*product.quantity;
         
     });
+    if(total==0){ 
+        items.innerHTML=`<p style="color:orange;font-style:italic;font-size:2rem;font-weight:700;">Cart empty<p/>`;
+    }
     return total;
 }
 total=displayorder(basket);
