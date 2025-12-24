@@ -67,14 +67,15 @@ body{
     align-items: center;
 }
 body.light{
-    background-color: ghostwhite;
-    color: black;
+  background: url("img/pexels-xabioregi-16451177.jpg")
+    no-repeat center center/cover;
+    color: rgb(0, 217, 255);
 }
 body.light .productcard{
     background-color: white;
 }
 body.light .addto{
-    background-color: rgb(14, 143, 202);
+    background-color: rgba(0, 255, 242, 0.418);
     color: black; 
 } 
 body.light #basket a{
@@ -82,20 +83,29 @@ body.light #basket a{
 }
 /* ----------Dark.css-----*/
 body.dark{
-    background-color: black;
+      background: url("img/pexels-francesco-ungaro-998641.jpg")
+     center center/cover;
     color: white;
 }
 body.dark nav{
-    background-color: black;
     color: white;
+}
+body.light nav{
+    background-color: rgba(255, 255, 255, 0.705);
 }
 body.dark .linkss a{
-    color: white;
+    color: rgb(0, 225, 255);
 }
 body.dark .search-box{
-    background-color: rgb(0, 0, 0);
-    border:black;
-    color: white;
+    background-color: rgb(14, 143, 202);
+    background: transparent;
+    color: #ffffff;
+    border: 3px solid  rgb(14, 143, 202);
+
+}
+body.dark .search-icon{
+    color: rgb(14, 143, 202);
+    font-size: 5px;
 }
 body.dark h1{
     text-shadow: 1px 1px 3px white;
@@ -105,10 +115,10 @@ body.dark .filtering{
     color: white;
 }
 body.dark .addto{
-    color: white; 
+    color: rgb(0, 204, 255); 
 }
 body.dark #basket a{
-    color: white;
+    color: rgb(0, 195, 255);
 }
 /* -------------------------------- */
 nav{
@@ -118,7 +128,9 @@ nav{
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color:rgb(255, 255, 255);
+    background-color: inherit;
+    box-shadow: 1px 1px 13px gray;
+
     color: black;
     border-radius: 10px;
     box-shadow: 1px 1px 13px black;
@@ -126,13 +138,19 @@ nav{
 }
 .linkss{
     display: flex;
-    gap: .7rem;
+    gap: 2rem;
 }
 .linkss a{
-    color: black;
-    font-size: 1rem;
-    font-weight: 700;
+    color: rgb(0, 255, 221);
+    font-size: 1.5rem;
+    font-weight: bolder;
     font-style: italic;
+    text-shadow: 1px 1px 2px rgb(0, 38, 255);
+    cursor: pointer;
+}
+.linkss a:hover{
+    color: rgb(0, 238, 255);
+    border-bottom: 3px solid rgb(200, 255, 0);
 }
 
 #basket a{
@@ -152,8 +170,8 @@ nav{
     height: 2.1rem;
     width: 13rem;
     font-family:'Times New Roman', Times, serif;
-    border: 2px solid white;
-    background-color:rgb(255, 255, 255);
+    border: 2px solid rgb(0, 247, 255);
+    background:transparent;
     border-radius: 15px;
 }
 .search-box:focus-within{
@@ -172,9 +190,9 @@ nav{
     top: 7px;
     width: 2rem;
     height: 1rem;
-    color: rgb(165, 156, 156);
     border-radius: 10px;
     cursor: pointer;
+    color: #00e1ff;
 
 }
 .nav-icons{
@@ -183,8 +201,20 @@ nav{
     align-items: center;
     gap: 1rem;
     cursor: pointer;
+    color: #00e1ff;
 }
+.coo , .cart-count{
+   color: #00e1ff;
+}
+body.dark .coo , body.dark .cart-count{
+   color: #0066ff;
+    
+}
+body.dark #ToggletoDark {
+   color: #0051ff;
+   
 
+}
 
 /**swiper**/
 .swiper-container {
@@ -225,12 +255,13 @@ nav{
 
 
 .icon{
-    color:red;
+    color:rgb(0, 132, 255);
 }
 
-.title{
-    margin-left: 3rem;
+body.light .icon{
+        color:rgb(0, 255, 242);
 }
+
 h1{
     text-shadow: 1px 1px 4px gray;
 }
@@ -275,6 +306,7 @@ h1{
     align-items: center;
     gap: 7px;
     border-radius: 10px;
+    color: #000;
 }
 .img{
     height: 30%;
@@ -453,3 +485,108 @@ h1{
   }
 } 
 /* ------------------------- */
+/* ===== Product Cards Base ===== */
+#cards {
+  display:flex;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 30px;
+  padding: 20px;
+}
+
+.productcard {
+  height: 420px;
+  border-radius: 22px;
+  overflow: hidden;
+  transition: 0.3s ease;
+}
+
+.productcard:hover {
+  transform: translateY(-8px);
+}
+
+/* ===== Dark Mode ===== */
+body.dark .productcard {
+  background: rgba(255, 255, 255, 0.192);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* ===== Light Mode ===== */
+body.light .productcard {
+  background: rgba(255, 249, 249, 0);
+  backdrop-filter: blur(48px);
+  -webkit-backdrop-filter: blur(58px);
+
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 10px 20px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== Card Content ===== */
+.productcard .img {
+  height: 45%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+.productcard .img img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.descrip {
+  height: 55%;
+  padding: 14px;
+  display: block;
+  text-align: left;
+}
+.descrip .title{
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+    text-align: left;
+    color: #000000;
+}
+
+.rate {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.star {
+  color: gold;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.addto {
+  flex: 1;
+  padding: 10px;
+  border-radius: 14px;
+  border: none;
+  background: rgb(102, 102, 102);
+  color: #000000;
+  font-weight: 600;
+  cursor: pointer;
+  padding-bottom: 29px;
+}
+
+.heart {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.25);
+  color: crimson;
+  cursor: pointer;
+}
