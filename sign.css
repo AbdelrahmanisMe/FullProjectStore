@@ -1,0 +1,123 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: url("img/3d-rendering-dark-earth-space (1).jpg")
+    no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Main container */
+.container {
+  width: 380px;
+  padding: 35px 30px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+  color: #0099ff;
+}
+
+/* Remove left image */
+.left {
+  display: none;
+}
+
+.right {
+  width: 100%;
+}
+
+.right h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* Input box */
+.input-box {
+  position: relative;
+  margin-bottom: 22px;
+}
+
+.input-box i {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9fd3ff;
+  font-size: 14px;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 12px 15px;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  background: transparent;
+  color: #fff;
+  font-size: 14px;
+}
+
+.input-box input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Login button */
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 25px;
+  background-color: transparent;
+  border: 1px solid #9fd3ff;
+  color: #00b7ff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #0269708a;
+}
+
+/* Social icons (optional) */
+.social {
+  display: none;
+}
+
+/* Register text */
+.switch {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.switch a {
+  color: #9fd3ff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.switch a:hover {
+  text-decoration: underline;
+}
+.error {
+  color: #ffb3b3;
+  font-size: 13px;
+  text-align: center;
+  margin-bottom: 15px;
+  display: none;
+}
