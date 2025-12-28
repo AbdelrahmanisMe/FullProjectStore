@@ -58,20 +58,20 @@ let body = document.body;
 
 moon.addEventListener("click", () => {
   if(body.classList.contains("light")){
-    body.classList.replace("light", "dark");
-    localStorage.setItem("theme", "dark");
+    body.classList.replace("light","dark");
+    localStorage.setItem("theme","dark");
   } else {
-    body.classList.replace("dark", "light");
-    localStorage.setItem("theme", "light");
+    body.classList.replace("dark","light");
+    localStorage.setItem("theme","light");
   }
 });
 
 // --- Save Theme in LocalStorage ---
 const savetheme = localStorage.getItem("theme");
 if(savetheme == "dark"){
-    body.classList.replace("light", "dark");
+    body.classList.replace("light","dark");
 } else if(savetheme == "light"){
-    body.classList.replace("dark", "light");
+    body.classList.replace("dark","light");
 }
 
 // --- Display Products Function ---

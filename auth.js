@@ -11,7 +11,7 @@ if (signupBtn) {
             const user = { username, email, password };
             localStorage.setItem("currentUser", JSON.stringify(user));
             
-            // إشعار جميل (Toast) يظهر ويختفي تلقائياً
+            // Toast Notification
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
@@ -34,7 +34,6 @@ if (signupBtn) {
             }, 2000);
 
         } else {
-            // رسالة خطأ جميلة في المنتصف
             Swal.fire({
                 icon: 'error',
                 title: 'عذراً',
@@ -50,7 +49,6 @@ if (signupBtn) {
 const loginBtn = document.getElementById("loginBtn");
 if (loginBtn) {
     loginBtn.addEventListener("click", () => {
-        // جلب الاسم
         const username = document.getElementById("loginUsername").value;
         const email = document.getElementById("loginEmail").value;
         const password = document.getElementById("loginPassword").value;
@@ -60,7 +58,6 @@ if (loginBtn) {
             const user = { username: username, email: email }; 
             localStorage.setItem("currentUser", JSON.stringify(user));
             
-            // إشعار نجاح دخول
             Swal.fire({
                 position: 'center',
                 icon: 'success',
@@ -74,7 +71,6 @@ if (loginBtn) {
             }, 1500);
 
         } else {
-            // رسالة تنبيه في حالة وجود حقول فارغة
             Swal.fire({
                 icon: 'warning',
                 title: 'بيانات ناقصة',
