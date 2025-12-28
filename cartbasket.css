@@ -45,6 +45,57 @@ body.dark .addto{
     color: white; 
 
 }
+#row-center{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+nav{
+    margin: 2px;
+    height: 4rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: none;
+    /* box-shadow: 1px 1px 13px gray; */
+    color: black;
+    border-radius: 10px;
+    /* box-shadow: 1px 1px 13px black; */
+    gap: 1rem;
+}
+.linkss{
+    display: flex;
+    margin-top: 4rem;
+    gap: 2rem;
+
+}
+.linkss a{
+    color: rgb(0, 255, 221);
+    font-size: 1.5rem;
+    font-weight: bolder;
+    font-style: italic;
+    text-shadow: 1px 1px 2px rgb(0, 38, 255);
+    cursor: pointer;
+}
+.linkss a:hover{
+    color: rgb(200, 255, 0);
+    text-decoration: none;
+    border-bottom: 3px solid rgb(200, 255, 0);
+}
+
+#basket a{
+    position:relative;
+    color: black;
+    span{
+        position: absolute;
+        top: -15px;
+        width: 0.9rem;
+        height:1rem;
+        padding-left: 2px;
+        font-weight: 700;
+        border-radius: 50%;
+    }
+}
 
 #basket a{
     position:relative;
@@ -179,4 +230,26 @@ body.dark .addto{
 
 .linkss{
     margin-bottom: 4rem;
+}
+
+@media(max-width:800px){
+    .prand{
+        font-size: 1rem;
+    }
+.linkss{
+    display: flex;
+    gap: 0.7rem;
+}
+.linkss a{
+    color: rgb(0, 255, 221);
+    font-size: 0.6rem;
+    font-weight: bolder;
+    font-style: italic;
+    text-shadow: 1px 1px 2px rgb(0, 38, 255);
+    cursor: pointer;
+}
+.linkss a:hover{
+    color: rgb(0, 238, 255);
+    border-bottom: 3px solid rgb(200, 255, 0);
+}
 }
