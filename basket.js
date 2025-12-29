@@ -25,10 +25,9 @@ let items = document.querySelector(".grid");
 let basket = JSON.parse(localStorage.getItem("cart")) || [];
 let total = 0;
 
-// دالة لتحديث الرقم فوق السلة (Badge)
+// دالة مساعدة لتحديث الرقم فوق السلة (Badge)
 function updateBadge() {
     let cartBadge = document.querySelector(".cart-count");
-    // فحص إذا كان العنصر موجود عشان ما يعملش ايرور
     if (cartBadge) {
         cartBadge.innerText = basket.length;
     }
@@ -38,6 +37,7 @@ function displayorder(basket) {
     total = 0;
     items.innerHTML = ""; // مسح المحتوى القديم
 
+    // حالة السلة فاضية
     if (basket.length === 0) {
         items.innerHTML = `
             <div style="text-align: center; padding: 50px 0; color: rgba(255,255,255,0.7);">
@@ -79,7 +79,7 @@ function displayorder(basket) {
     return total;
 }
 
-// تحميل السلة
+// تحميل السلة للبداية
 displayorder(basket);
 
 // --- Decrease Quantity ---
@@ -90,7 +90,7 @@ function decrease(id) {
         }
     });
     displayorder(basket);
-    updateLocalStorage();
+    updateLocalStorage(); // حفظ التعديل
 }
 
 // --- Increase Quantity ---
@@ -101,7 +101,7 @@ function increase(id) {
         }
     });
     displayorder(basket);
-    updateLocalStorage();
+    updateLocalStorage(); // حفظ التعديل
 }
 
 // --- Remove Single Item ---
@@ -116,15 +116,19 @@ let removeitem = (id) => {
         confirmButtonText: "Yes, Remove"
     }).then((result) => {
         if (result.isConfirmed) {
-            // ترشيح المصفوفة (حذف المنتج)
+            // 1. الحذف من المصفوفة
             basket = basket.filter(product => product.id != id);
-            updateLocalStorage(); // حفظ
-            displayorder(basket); // إعادة العرض والرقم هيقل هنا
+            
+            // 2. الحفظ في التخزين
+            updateLocalStorage();
+            
+            // 3. إعادة العرض (وهنا هيتم تحديث الرقم)
+            displayorder(basket);
         }
     });
 }
 
-// --- Clear Cart Function ---
+// --- Clear Cart (حذف الكل) ---
 function removecart() {
     Swal.fire({
         title: 'Clear Cart?',
@@ -135,14 +139,19 @@ function removecart() {
         confirmButtonText: 'Yes, Clear it'
     }).then((result) => {
         if (result.isConfirmed) {
-            localStorage.setItem("cart", "[]");
-            basket = []; // تفريغ المصفوفة
-            displayorder(basket); // الرقم هيصفر هنا
+            // 1. تفريغ المصفوفة
+            basket = [];
+            
+            // 2. تحديث التخزين
+            updateLocalStorage();
+            
+            // 3. عرض الشاشة الفاضية (الرقم هيصفر هنا)
+            displayorder(basket);
         }
     });
 }
 
-// --- Pay / Checkout Function ---
+// --- Pay / Checkout (الدفع) ---
 function pay() {
     let currentTotal = displayorder(basket);
     
@@ -160,13 +169,17 @@ function pay() {
             html: `Thank you for your purchase!<br><b>Total: $${currentTotal.toFixed(2)}</b>`,
             confirmButtonColor: "#0099ff"
         });
-        localStorage.setItem("cart", "[]");
-        basket = []; // تفريغ السلة والدفعان
-        displayorder(basket); // الرقم هيصفر
+        // بعد الدفع بنجاح:
+        // 1. تفريغ السلة
+        basket = [];
+        // 2. تحديث التخزين
+        updateLocalStorage();
+        // 3. عرض الشاشة الفاضية (الرقم هيصفر)
+        displayorder(basket);
     }
 }
 
-// --- Helper: Update LocalStorage ---
+// Helper: Update LocalStorage
 function updateLocalStorage() {
     localStorage.setItem("cart", JSON.stringify(basket));
 }
