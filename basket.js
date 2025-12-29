@@ -25,9 +25,10 @@ let items = document.querySelector(".grid");
 let basket = JSON.parse(localStorage.getItem("cart")) || [];
 let total = 0;
 
-// دالة لتحديث الرقم فوق أيقونة السلة
+// دالة لتحديث الرقم فوق السلة (Badge)
 function updateBadge() {
     let cartBadge = document.querySelector(".cart-count");
+    // فحص إذا كان العنصر موجود عشان ما يعملش ايرور
     if (cartBadge) {
         cartBadge.innerText = basket.length;
     }
@@ -37,7 +38,6 @@ function displayorder(basket) {
     total = 0;
     items.innerHTML = ""; // مسح المحتوى القديم
 
-    // لو السلة فاضية
     if (basket.length === 0) {
         items.innerHTML = `
             <div style="text-align: center; padding: 50px 0; color: rgba(255,255,255,0.7);">
@@ -74,7 +74,7 @@ function displayorder(basket) {
         total += product.price * product.quantity;
     });
     
-    // تحديث الرقم بعد كل عرض
+    // تحديث الرقم بعد العرض
     updateBadge();
     return total;
 }
@@ -116,42 +116,34 @@ let removeitem = (id) => {
         confirmButtonText: "Yes, Remove"
     }).then((result) => {
         if (result.isConfirmed) {
+            // ترشيح المصفوفة (حذف المنتج)
             basket = basket.filter(product => product.id != id);
-            updateLocalStorage();
-            displayorder(basket); // displayorder هتحدث البادج تلقائياً
+            updateLocalStorage(); // حفظ
+            displayorder(basket); // إعادة العرض والرقم هيقل هنا
         }
     });
 }
 
 // --- Clear Cart Function ---
 function removecart() {
-    if (basket.length > 0) {
-        Swal.fire({
-            title: 'Clear Cart?',
-            text: "Are you sure you want to clear all items?",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            confirmButtonText: 'Yes, Clear it'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                localStorage.setItem("cart", "[]");
-                basket = JSON.parse(localStorage.getItem("cart"));
-                displayorder(basket); // هنا هيظهر "Cart Empty" والرقم هيصفر
-            }
-        });
-    } else {
-        Swal.fire({
-            icon: "info",
-            title: "Cart Empty",
-            text: `Purchases cart empty $${total}`,
-        });
-    }
+    Swal.fire({
+        title: 'Clear Cart?',
+        text: "Are you sure you want to clear all items?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        confirmButtonText: 'Yes, Clear it'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            localStorage.setItem("cart", "[]");
+            basket = []; // تفريغ المصفوفة
+            displayorder(basket); // الرقم هيصفر هنا
+        }
+    });
 }
 
 // --- Pay / Checkout Function ---
 function pay() {
-    // Recalculate total to be safe
     let currentTotal = displayorder(basket);
     
     if (currentTotal === 0 || basket.length === 0) {
@@ -168,10 +160,9 @@ function pay() {
             html: `Thank you for your purchase!<br><b>Total: $${currentTotal.toFixed(2)}</b>`,
             confirmButtonColor: "#0099ff"
         });
-        // Clear cart after order (Optional)
         localStorage.setItem("cart", "[]");
-        basket = [];
-        displayorder(basket); // هنا هيصفر الرقم فوق السلة
+        basket = []; // تفريغ السلة والدفعان
+        displayorder(basket); // الرقم هيصفر
     }
 }
 
