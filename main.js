@@ -191,3 +191,25 @@ if (logoutBtn) {
         location.reload();
     });
 }
+
+// --- دالة لتحديث عدد السلة عند فتح الصفحة ---
+function updateCartBadge() {
+    let cartBadge = document.querySelector(".cart-count");
+    let cartData = JSON.parse(localStorage.getItem("cart")) || [];
+    if (cartBadge) {
+        cartBadge.innerText = cartData.length;
+    }
+}
+
+// تنفيذ الدالة عند تحميل الصفحة
+window.addEventListener("DOMContentLoaded", () => {
+    updateCartBadge();
+});
+
+// "الماجيك": تحديث فوري لو الصفحة مفتوحة في تاني تاب
+// هذا يجعل الرقم يتحدث في الصفحة الرئيسية وأنت بتسجل خروج أو تمسح من السلة
+window.addEventListener('storage', (e) => {
+    if (e.key === 'cart') {
+        updateCartBadge();
+    }
+});
