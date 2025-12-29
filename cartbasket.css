@@ -1,255 +1,332 @@
-body{
-    background-color: ghostwhite;
+/* --- Reset & Global --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: url("img/pexels-francesco-ungaro-998641.jpg") no-repeat center center/cover;
+    background-attachment: fixed;
     overflow-x: hidden;
     overflow-y: auto;
-    height: auto;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    justify-content:center;
-    align-items: center;
+    align-items: center; /* Center the cart on screen */
+    color: white;
+}
 
-}
-body.light{
-    background-color: ghostwhite;
-    color: black;
-}
-body.light .productcard{
-    background-color: white;
-}
-body.light .addto{
-    background-color: rgb(14, 143, 202);
-    color: black; 
-} 
-/* ----------Dark.css-----*/
-body.dark{
-    background-color: black;
-    color: white;
-}
-body.dark .linkss a{
-    color: white;
-}
-body.dark .search-box{
-    background-color: rgb(0, 0, 0);
-    border:black;
-    color: white;
-}
-body.dark h1{
-    text-shadow: 1px 1px 3px white;
-}
-body.dark .filtering{
-    background-color: black;
-    color: white;
-}
-body.dark .addto{
-    color: white; 
-
-}
-#row-center{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-nav{
-    margin: 2px;
+/* --- Navbar (Matching Main Site) --- */
+nav {
+    width: 90%;
+    max-width: 1200px;
+    margin: 15px auto;
     height: 4rem;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    background-color: none;
-    /* box-shadow: 1px 1px 13px gray; */
-    color: black;
-    border-radius: 10px;
-    /* box-shadow: 1px 1px 13px black; */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    padding: 0 30px;
     gap: 1rem;
+    z-index: 1000;
 }
-.linkss{
-    display: flex;
-    margin-top: 4rem;
-    gap: 2rem;
 
-}
-.linkss a{
-    color: rgb(0, 255, 221);
-    font-size: 1.5rem;
-    font-weight: bolder;
-    font-style: italic;
-    text-shadow: 1px 1px 2px rgb(0, 38, 255);
-    cursor: pointer;
-}
-.linkss a:hover{
-    color: rgb(200, 255, 0);
+/* Brand */
+.prand {
+    font-size: 1.8rem;
+    font-weight: 900;
+    font-family: 'Segoe UI';
+    color: white;
     text-decoration: none;
-    border-bottom: 3px solid rgb(200, 255, 0);
 }
+.prand span { color: #00e1ff; }
 
-#basket a{
-    position:relative;
-    color: black;
-    span{
-        position: absolute;
-        top: -15px;
-        width: 0.9rem;
-        height:1rem;
-        padding-left: 2px;
-        font-weight: 700;
-        border-radius: 50%;
-    }
-}
-
-#basket a{
-    position:relative;
-    color:black;
-    span{
-        position: absolute;
-        top: -15px;
-        width: 0.9rem;
-        height:1rem;
-        padding-left: 2px;
-        font-weight: 700;
-        border-radius: 50%;
-    }
-}
-.titletable{
+/* Links */
+.linkss {
     display: flex;
-    justify-content: flex-start;
-    align-items:center;
+    gap: 1.5rem;
+}
+.linkss a {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+.linkss a:hover {
+    color: #00e1ff;
+    text-shadow: 0 0 10px rgba(0, 225, 255, 0.8);
+}
+
+/* Cart Icon */
+#basket a {
+    position: relative;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+#basket a span {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: #ff4757;
+    color: white;
+    font-size: 0.7rem;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+/* --- Cart Header (Title Table) --- */
+.titletable {
+    display: flex;
+    justify-content: center; /* Centered Text */
+    align-items: center;
     height: 4rem;
     width: 100%;
-    margin-top: 2rem;
-    border-radius: 10px 10px 0 0px;
-    background-color:rgb(236, 47, 47);
-    span{
-        font-size: 1.6rem;
-        font-style: italic;
-        font-weight: 900;
-        color:white;
-    }
+    margin-top: 20px;
+    border-radius: 20px 20px 0 0;
+    
+    /* Glass Style Header */
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 2px solid #00e1ff; /* Blue border */
 }
-.quantity{
+.titletable span {
+    font-size: 1.8rem;
+    font-style: italic;
+    font-weight: 900;
+    color: #00e1ff; /* Neon Blue */
+    text-shadow: 0 0 10px rgba(0, 225, 255, 0.5);
+}
+
+/* --- Cart Container (Grid) --- */
+.grid {
+    width: 100%;
+    max-width: 600px; /* Limits width on large screens */
+    min-height: 20rem;
+    /* Glass Style Container */
+    background: rgba(20, 20, 20, 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0 0 20px 20px; /* Rounded bottom */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    padding-bottom: 20px;
+    
+    /* Scroll Properties */
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    max-height: 60vh; /* Max height so it scrolls inside */
+}
+
+/* --- Scrollbar Styling (Dark/Blue) --- */
+.grid::-webkit-scrollbar { width: 8px; }
+.grid::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
+.grid::-webkit-scrollbar-thumb { background: #00e1ff; border-radius: 4px; }
+.grid::-webkit-scrollbar-thumb:hover { background: #0099ff; }
+
+/* --- Cart Item --- */
+.item {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    button{
-        background-color:white;
-        border: 1px solid white;
-        cursor: pointer;
-        font-weight: 900;
-        font-size: 1rem;
-    }
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.05); /* Transparent item */
+    margin: 10px 20px 0 20px;
+    border-radius: 15px;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: 0.3s;
 }
-.grid{
+.item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(0, 225, 255, 0.3);
+    transform: scale(1.01);
+}
+
+/* Image Container */
+.imge {
+    margin-right: 20px;
+}
+.imge img {
+    height: 6rem;
+    width: 5rem;
+    object-fit: contain; /* Maintain aspect ratio */
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 5px;
+}
+
+/* Text Details inside Item */
+.row {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: nowrap;
-    height: 20rem;
-    width: 31rem;
-    gap: 1px;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    scroll-behavior: smooth;
-    background-color: rgb(255, 255, 255);
-    border-radius:0  0 10px 10px;
-    box-shadow: 0px 1px 5px rgb(231, 231, 231);
+    gap: 5px;
+    width: 50%;
+}
+.row h3 { /* Assuming there is an H3 or text inside .row */
+    font-size: 1rem;
+    color: #fff;
+    font-weight: 600;
+}
+.row span { /* Price */
+    color: #00e1ff;
+    font-weight: bold;
+    font-size: 1.1rem;
 }
 
-.grid::-webkit-scrollbar {
-  width: 9px; /* for vertical scrollbars */
-  height: 5px; /* for horizontal scrollbars */
-  color: rgb(175, 175, 175);
-}
-
-/* Target the track */
-.grid::-webkit-scrollbar-track {
-  background:  rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-}
-
-/* Target the thumb (handle) */
-.grid::-webkit-scrollbar-thumb{
-    background:white;
-    border-radius: 10px;
-}
-
-.grid::-webkit-scrollbar-thumb:hover{
-    background: rgb(218, 213, 213);
-}
-.item{
+/* --- Quantity Controls --- */
+.quantity {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    background-color: white;
-    margin-top: 3px;
-    border-radius:10px;
-    padding-left: 10px;
-    padding-bottom: 1rem;
-    height: 7rem;
-    width: 29.7rem;
-    gap:3rem;
+    gap: 10px;
 }
-
-.row{
-    display: flex;
-    width: 19rem;
-}
-
-.imge{
-    margin-right: 1rem;
-    img{
-        height: 6rem;
-        width: 4.7rem;
-    }
-}
-
-
-.del{
+.quantity button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #00e1ff;
+    background: transparent;
+    color: #fff;
     cursor: pointer;
-    margin-left: -2rem;
+    font-weight: bold;
+    transition: 0.2s;
+}
+.quantity button:hover {
+    background: #00e1ff;
+    color: #000;
+}
+.quantity span {
+    font-weight: bold;
+    font-size: 1.1rem;
 }
 
-
-.btn{
-    margin-top: 6px;
-    padding: 5px;
-    button{
-        height: 2.6rem;
-        width: 9rem;
-        background-color: rgb(255, 255, 255);
-        border: 1px solid  rgb(255, 255, 255);
-        border-radius: 20px;
-        font-weight: 600;
-        font-size: 1.1rem;
-        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        color:rgb(0, 0, 0);
-        font-style: italic;
-        cursor: pointer;
-    }
+/* --- Delete Icon --- */
+.del {
+    cursor: pointer;
+    margin-left: 10px;
+    color: #ff4757;
+    font-size: 1.2rem;
+    transition: 0.3s;
 }
+.del:hover { transform: scale(1.2) rotate(10deg); color: #fff; }
 
-.linkss{
-    margin-bottom: 4rem;
-}
-
-@media(max-width:800px){
-    .prand{
-        font-size: 1rem;
-    }
-.linkss{
+/* --- Checkout Button Area --- */
+.btn {
+    margin-top: 20px;
     display: flex;
-    gap: 0.7rem;
+    justify-content: center;
 }
-.linkss a{
-    color: rgb(0, 255, 221);
-    font-size: 0.6rem;
-    font-weight: bolder;
+.btn button {
+    height: 3rem;
+    width: 100%;
+    max-width: 500px;
+    /* Glass Pill Button */
+    background: rgba(0, 132, 255, 0.6);
+    border: 1px solid #00e1ff;
+    border-radius: 50px;
+    color: white;
+    font-weight: 700;
+    font-size: 1.2rem;
     font-style: italic;
-    text-shadow: 1px 1px 2px rgb(0, 38, 255);
     cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 5px 20px rgba(0, 132, 255, 0.4);
 }
-.linkss a:hover{
-    color: rgb(0, 238, 255);
-    border-bottom: 3px solid rgb(200, 255, 0);
+.btn button:hover {
+    background: #00e1ff;
+    box-shadow: 0 8px 30px rgba(0, 225, 255, 0.6);
+    transform: translateY(-2px);
+    color: #000;
 }
+
+/* --- Responsive --- */
+.word1{
+    padding-right:  45px ;
+}
+/* --- Responsive Styles for Cart (Mobile/Tablet) --- */
+@media (max-width: 768px) {
+    /* تعديل النافبار ليكون عمودي في الموبايل */
+    nav {
+        flex-direction: column;
+        height: auto;
+        padding: 15px 10px;
+        margin-bottom: 20px;
+    }
+    
+    /* إخفاء الروابط في الموبايل (لأنه مفيش زر Menu في كودك الأصلي) */
+    .linkss {
+        display: none;
+    }
+
+    /* تعديل مساحة الصندوق الرئيسي */
+    .grid {
+        width: 95%;
+        max-height: 60vh; /* بحيث يملأ الشاشة بس مش فوق */
+    }
+
+    /* عناصر المنتج */
+    .item {
+        flex-direction: column; /* ترتيب عناصر الكارت فوق بعض */
+        height: auto;
+        padding: 15px;
+        align-items: center; /* توسيط المحتوى */
+        text-align: center;
+        position: relative; /* مطلوب لمكان زر الحذف */
+    }
+    
+    /* صورة المنتج */
+    .imge img {
+        height: 120px;
+        width: 100px;
+    }
+
+    /* تفاصيل المنتج (الاسم والسعر) */
+    .row {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    .row h3 { font-size: 0.9rem; }
+    .row span { font-size: 1rem; }
+
+    /* أزرار الكمية */
+    .quantity {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 15px;
+    }
+    .quantity button {
+        width: 35px;
+        height: 35px;
+    }
+
+    /* زر الحذف (نضعه في الزاوية) */
+    .del {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        margin-left: 0;
+    }
+
+    /* زر الشراء النهائي */
+    .btn button {
+        width: 90%;
+        font-size: 1rem;
+        height: 3rem;
+    }
 }

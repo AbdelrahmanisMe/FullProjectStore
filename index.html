@@ -3,155 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <title>Ecommerce ProductsShow</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <title>Ecommerce ProductsShow</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="light">
     
-    <div class="welcome-message" id="welcomeMessage" style="opacity:1;">
+    <!-- Welcome Message -->
+    <div class="welcome-message" id="welcomeMessage">
         <div class="message">
-                <div class="image">
-                    <img src="smile.png"  alt="">
-                </div>
-                <span style="font-weight: 900;">👋اهلاوسهلا</span>
-                <p style="font-weight: 600;font-size: 0.9rem;">زيارتكم شرف لمتجرنا العزيز نتمني أن تجد ما تحتاج من الاغراض نحن في الخدمه </p>
-                <button id="closeMessage"> بدء الاستكشاف</button>
+            <div class="image">
+                <img src="smile.png" alt="">
             </div>
+            <span style="font-weight: 900;">👋اهلاوسهلا</span>
+            <p style="font-weight: 600;font-size: 0.9rem;">زيارتكم شرف لمتجرنا العزيز نتمني أن تجد ما تحتاج من الاغراض نحن في الخدمه </p>
+            <button id="closeMessage" class="btn btn-glass">بدء الاستكشاف</button>
+        </div>
         <div class="back-black"></div>
     </div>
-    
-    <nav>
-        <!-- Mobile Select Menu -->
-        <select class="form-select d-block d-md-none nav-select" onchange="location = this.value;" name="Menu" id="mobileMenu">
-          <option value="#">Menu</option>
-          <option value="#">Home</option>
-          <option value="#">Products</option>
-          <option value="#">Categories</option>
-          <option value="#">Deals</option>
-          <option value="#">About</option>
-          <option value="#">Contact</option>
-        </select>
 
-        <span id="userName" style="font-weight:600;"></span>
-
-        <p class="prand" style="font-size: 1.7rem; font-weight:900; margin-top: 15px; font-family: 'Segoe UI';">Shop<span style="color: rgb(0, 153, 255);">Hub</span></p>
-        <div class="linkss">
-            <a style="text-decoration: none;" href="#">Home</a>
-            <a style="text-decoration: none;" href="#">Products</a>
-            <a style="text-decoration: none;" href="#">Categories</a>
-            <a style="text-decoration: none;" href="#">Deals</a>
-            <a style="text-decoration: none;" href="#">About</a>
-            <a style="text-decoration: none;" href="#">Contact</a>
-        </div>
-        <div style="position: relative;" >
-            <input id="search" class="search-box" placeholder=" Search Products.." type="search" min="2" max="20">
-                    <svg class="search-icon"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    fill="currentColor"
-                    viewBox="0 0 16 16"
-                    >
-                    <path
-                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
-                    />
-                    </svg>
-        </div>
+    <!-- Bootstrap Navbar -->
+<!-- استبدل هذا الجزء في الـ index.html -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-custom ">
+    <div class="container">
+        <a class="navbar-brand brand-text" href="#">Shop<span>Hub</span></a>
         
-        <!-- Icons -->
-        <div class="nav-icons">
-            <!-- Login Icon -->
-            <div class="icon" id="loginLink">
-              <a href="sign.html">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                  fill="currentColor" viewBox="0 0 16 16">
-                  <path
-                    d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4z"
-                  />
-                </svg>
-              </a>
-            </div>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <!-- User Name Display (Hidden initially) -->
-            <span id="navUser" style="font-weight:700; display:none; margin-left: 10px;"></span>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <!-- الروابط -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link link-hover" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link link-hover" href="#">Products</a></li>
+                <li class="nav-item"><a class="nav-link link-hover" href="#">Categories</a></li>
+                <li class="nav-item"><a class="nav-link link-hover" href="#">Deals</a></li>
+            </ul>
 
-            <!-- Logout Button (Hidden initially) -->
-            <span id="logoutBtn" style="cursor:pointer; display:none; margin-left: 10px;">
-              <i class="fa-solid fa-right-from-bracket"></i>
-            </span>
+            <!-- البحث -->
+            <form class="d-flex me-lg-3 mb-2 mb-lg-0 search-wrapper" role="search">
+                <input class="form-control search-pro" type="search" id="search" placeholder="Search...">
+                <i class="fa fa-search search-icon-pro"></i>
+            </form>
 
-            <div id="basket" class="icon">
-                <a href="cartbasket.html">
-                    <svg class="coo"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        fill="currentColor"
-                        viewBox="0 0 16 16"
-                        >
-                        <path
-                            d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
-                        />
-                    </svg>
-                    <span class="cart-count">0</span>
+            <!-- الأيقونات -->
+            <div class="d-flex ms-auto flex-lg-row flex-column align-items-center gap-3 w-100 w-lg-auto  border-lg-0 pt-2 pt-lg-0">
+                
+                <div class="d-flex align-items-center gap-2">
+                    <a href="sign.html" class="icon-pro" id="loginLink">
+                        <i class="fa-solid fa-user"></i> <span class="d-none d-md-inline">Login</span>
+                    </a>
+                    <span id="navUser" class="text-white fw-bold d-none ms-2 user-glow"></span>
+                    <i id="logoutBtn" class="fa-solid fa-right-from-bracket text-white d-none ms-2 icon-pro"></i>
+                </div>
+
+                <a href="cartbasket.html" class="icon-pro position-relative">
+                    <i class="fa-solid fa-cart-shopping"></i> <span class="d-lg-none ms-2">Cart</span>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-count">0</span>
                 </a>
-            </div>
 
-            <div class="icon" id="ToggletoDark">
-                <i class="fa-solid fa-moon"></i>
-            </div>
+                <i class="fa-solid fa-moon text-white icon-pro" id="ToggletoDark"></i>
 
+            </div>
         </div>
-        <!-- Icons -->
+    </div>
+</nav>
+    <!-- Spacer for Fixed Navbar -->
+    <div class="mt-5 pt-4"></div>
 
-    </nav>
-
-    <div class="swiper mySwiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide"><img src="img/imgi_1_1" alt=""></div>
-        <div class="swiper-slide"><img src="img/imgi_1_sunscreen-product-banner-ads-on-260nw-1509241181" alt=""></div>
-        <div class="swiper-slide"><img src="img/imgi_2_2" alt=""></div>
-        <div class="swiper-slide"><img src="img/imgi_2_powerful-sunscreen-product-banner-water-260nw-1502049644" alt=""></div>
-        <div class="swiper-slide"><img src="img/imgi_3_3" alt=""></div>
-        <div class="swiper-slide"><img src="img/imgi_3_stock-vector-powerful-sunscreen-banner-with-water-protective-shield-on-blue-sky-in-d-illustration-1509249101" alt=""></div>
-        <div class="swiper-slide"><img src="img/imgi_4_4" alt=""></div>
-        <div class="swiper-slide"><img src="img/imgi_4_sunscreen-spray-summer-beach-background_281653-926" alt=""></div>
-        <div class="swiper-slide"><img src="img/imgi_5_5" alt=""></div>
-      </div>
+    <!-- Swiper -->
+    <div class="container mb-4">
+        <div class="swiper mySwiper rounded-4 overflow-hidden shadow-lg">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="img/imgi_1_1" alt=""></div>
+                <div class="swiper-slide"><img src="img/imgi_1_sunscreen-product-banner-ads-on-260nw-1509241181" alt=""></div>
+                <div class="swiper-slide"><img src="img/imgi_2_2" alt=""></div>
+                <div class="swiper-slide"><img src="img/imgi_2_powerful-sunscreen-product-banner-water-260nw-1502049644" alt=""></div>
+                <div class="swiper-slide"><img src="img/imgi_3_3" alt=""></div>
+                <div class="swiper-slide"><img src="img/imgi_3_stock-vector-powerful-sunscreen-banner-with-water-protective-shield-on-blue-sky-in-d-illustration-1509249101" alt=""></div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
     </div>
 
-    <div class="title">
-        <h1>Our Products</h1>
-    </div>
-
-    <div>
-        <div class="borderlefts">
-            <select id="categories" class="filtering" name="All catecories">
-                <option value="all">All Categories..</option>
+    <!-- Filters -->
+    <div class="container text-center mb-4">
+        <h1 class="display-5 fw-bold text-white mb-4">Our Products</h1>
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <select id="categories" class="form-select form-select-glass w-auto">
+                <option value="all">All Categories</option>
                 <option value="electronics">Electronics</option>
                 <option value="men's clothing">Men's Clothing</option>
                 <option value="women's clothing">Women's Clothing</option>
                 <option value="jewelery">Jewelery</option>
             </select>
-        
-            <select id="filterby" class="filtering" name="All catecories">
-                <option value="featured">Sort by:Featured</option>
-                <option value="price-asc">Price:Low to High</option>
-                <option value="price-desc">Price:High to Low</option>
+            <select id="filterby" class="form-select form-select-glass w-auto">
+                <option value="featured">Sort by: Featured</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
                 <option value="rating-desc">Rating: High to Low</option>
             </select>
         </div>
-
-        <div class="load">
-            <span id="spinner" class="loader"></span>
-        </div>
-        <div id="cards"></div>
     </div>
 
+    <!-- Loader -->
+    <div class="load d-flex justify-content-center my-5">
+        <div class="spinner-border text-primary" role="status" id="spinner" style="width: 3rem; height: 3rem;"></div>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="container">
+        <div class="row g-4" id="cards"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="main.js"></script>

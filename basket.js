@@ -1,136 +1,163 @@
-//----------light to dark toggle------------------------
-let moon=document.getElementById("ToggletoDark");
-let body=document.body;
+// --- Dark Mode Toggle ---
+let moon = document.getElementById("ToggletoDark");
+let body = document.body;
 
-moon.addEventListener("click",()=>{
-    if(body.classList.contains("light")){
-        body.classList.replace("light","dark");
-        localStorage.setItem("theme","dark");
-    }else{
-        body.classList.replace("dark","light");
-        localStorage.setItem("theme","light");
+moon.addEventListener("click", () => {
+    if (body.classList.contains("light")) {
+        body.classList.replace("light", "dark");
+        localStorage.setItem("theme", "dark");
+    } else {
+        body.classList.replace("dark", "light");
+        localStorage.setItem("theme", "light");
     }
 });
-//---------------savecolormood in local storage- cookies-----------
-    const savetheme=localStorage.getItem("theme");
-    if(savetheme=="dark"){
-        body.classList.replace("light","dark");
-    }else if(savetheme=="light"){
-        body.classList.replace("dark","light");
+
+// --- Save Theme on Load ---
+const savetheme = localStorage.getItem("theme");
+if (savetheme == "dark") {
+    body.classList.replace("light", "dark");
+} else if (savetheme == "light") {
+    body.classList.replace("dark", "light");
+}
+
+// --- Cart Logic ---
+let items = document.querySelector(".grid");
+let basket = JSON.parse(localStorage.getItem("cart"));
+let total = 0;
+
+function displayorder(basket) {
+    total = 0;
+    items.innerHTML = ""; // مسح المحتوى القديم
+
+    // لو السلة فاضية
+    if (basket.length === 0) {
+        items.innerHTML = `
+            <div style="text-align: center; padding: 50px 0; color: rgba(255,255,255,0.7);">
+                <i class="fa-solid fa-cart-shopping" style="font-size: 3rem; margin-bottom: 15px; opacity: 0.5;"></i>
+                <h2 style="font-weight: bold;">Your Cart is Empty</h2>
+            </div>`;
+        return 0;
     }
-//--------------------------------------------------------
-let items= document.querySelector(".grid");
-let  basket= JSON.parse(localStorage.getItem("cart"));
-let total=0;
-function displayorder(basket){
-    total=0;
-    items.innerHTML=null;
-    basket.forEach( (product ) => {
-        items.innerHTML+=
-                `<div class="item">
-                    <div class="row">
-                        <div class="imge">
-                            <img src="${product.image}" alt="">
-                        </div>
-                        <div>
-                            <p style="font-size: 1.2rem;font-weight: 700; width:15rem; color:black;">${product.title}</p>
-                            <p  style="font-size: 1 rem;margin-top:-1rem;color:rgb(175, 171, 171);">${product.category}</p>
-                            <div style="margin-top:-0.8rem;color:black;">$${product.price}</div>    
-                        </div>
+
+    basket.forEach(product => {
+        // ملاحظة: أزلتنا كل style="color:black" عشان الـ CSS يتولى الأمر
+        items.innerHTML += `
+            <div class="item">
+                <div class="row">
+                    <div class="imge">
+                        <img src="${product.image}" alt="${product.title}">
                     </div>
- 
-                    <div class="quantity" style="color:black;">
-                            <button  onclick="decrease(${product.id})" style="font-size:1.3rem">-</button>
-                            <p id="quantity">${product.quantity}</p> 
-                            <button onclick="increase(${product.id})">+</button>
+                    <div>
+                        <h3>${product.title}</h3>
+                        <span>${product.category}</span>
+                        <div class="price-display">$${product.price}</div>    
                     </div>
-                    <div class="del"  onclick="removeitem(${product.id})" >
-                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0,0,256,256">
-                            <g fill="#ff0000" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(10.66667,10.66667)"><path d="M10.80664,2c-0.517,0 -1.01095,0.20431 -1.37695,0.57031l-0.42969,0.42969h-5c-0.36064,-0.0051 -0.69608,0.18438 -0.87789,0.49587c-0.18181,0.3115 -0.18181,0.69676 0,1.00825c0.18181,0.3115 0.51725,0.50097 0.87789,0.49587h16c0.36064,0.0051 0.69608,-0.18438 0.87789,-0.49587c0.18181,-0.3115 0.18181,-0.69676 0,-1.00825c-0.18181,-0.3115 -0.51725,-0.50097 -0.87789,-0.49587h-5l-0.42969,-0.42969c-0.365,-0.366 -0.85995,-0.57031 -1.37695,-0.57031zM4.36523,7l1.52734,13.26367c0.132,0.99 0.98442,1.73633 1.98242,1.73633h8.24805c0.998,0 1.85138,-0.74514 1.98438,-1.74414l1.52734,-13.25586z"></path></g></g>
-                            </svg>
-                    </div>
+                </div> 
+                <div class="quantity">
+                    <button onclick="decrease(${product.id})">-</button>
+                    <span>${product.quantity}</span> 
+                    <button onclick="increase(${product.id})">+</button>
                 </div>
-                        `;
-        total+=product.price*product.quantity;
-        
+                <div class="del" onclick="removeitem(${product.id})">
+                    <!-- استبدال الـ SVG بأيقونة FontAwesome -->
+                    <i class="fa-solid fa-trash-can"></i>
+                </div>
+            </div>`;
+        total += product.price * product.quantity;
     });
-    if(total==0){ 
-        items.innerHTML=`<p style="color:orange;font-style:italic;font-size:2rem;font-weight:700;">Cart empty<p/>`;
-    }
+
     return total;
 }
-total=displayorder(basket);
+
+// تحميل السلة
 displayorder(basket);
-//------------------decrease Quantity------increase---------
-let quant =document.getElementById("quantity");
-function increase(id){
+
+// --- Decrease Quantity ---
+function decrease(id) {
     basket.find(p => {
-        if(p.id==id)
-        {  
-            p.quantity<15?p.quantity+=1:p.quantity=15;
+        if (p.id == id) {
+            p.quantity > 1 ? p.quantity -= 1 : p.quantity = 1;
         }
     });
     displayorder(basket);
+    updateLocalStorage(); // تحديث التخزين
 }
-function decrease(id){
+
+// --- Increase Quantity ---
+function increase(id) {
     basket.find(p => {
-        if(p.id==id)
-        {   
-            p.quantity>1?p.quantity-=1:p.quantity=1;
-        };
-        displayorder(basket);
+        if (p.id == id) {
+            p.quantity < 15 ? p.quantity += 1 : p.quantity = 15;
+        }
     });
+    displayorder(basket);
+    updateLocalStorage(); // تحديث التخزين
 }
-//------------remove oneitem--------------------------------
-let delet = document.querySelector(".del");
-let  removeitem = (id)=>{
-        Swal.fire({
+
+// --- Remove Single Item ---
+let removeitem = (id) => {
+    Swal.fire({
         title: "Remove it?",
-        text: "Are you sure you want to reomove this item from cart",
+        text: "Are you sure you want to remove this item from cart?",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
+        confirmButtonColor: "#ff4757",
+        cancelButtonColor: "#333",
         confirmButtonText: "Yes, Remove"
-        }).then((result) => {
+    }).then((result) => {
         if (result.isConfirmed) {
-            basket=basket.filter(product => product.id!=id);
-            localStorage.setItem("cart",JSON.stringify(basket));
-            basket=JSON.parse(localStorage.getItem("cart"))
+            basket = basket.filter(product => product.id != id);
+            updateLocalStorage(); // تحديث التخزين
             displayorder(basket);
         }
-        else{
-            return;
-        }
-        });
-}
-//---------removebasketcart-------------------------------
-function removecart(){
-    if(total>0){
-        localStorage.setItem("cart","[]");
-        basket=JSON.parse(localStorage.getItem("cart"));
-        displayorder(basket);
-    }else{
-        Swal.fire({
-        icon: "info",
-        title: "Make Order",
-        text: `Purchases cart empty $${total}`,
-        });
-    }
-}
-//--------------------------------------------------------
-function pay(){
-    if(total==0){
-        Swal.fire({
-        icon: "info",
-        title: "Make Order",
-        text: `Purchases cart empty $${total}`,
-        });
-    }else{
-        Swal.fire({
-        icon: "success",
-        title: "Order Successful!",
-        text: `thank you for your purchases Total: $${total}`,
     });
+}
+
+// --- Clear Cart Function ---
+function removecart() {
+    Swal.fire({
+        title: 'Clear Cart?',
+        text: "Are you sure you want to clear all items?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        confirmButtonText: 'Yes, Clear it'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            localStorage.setItem("cart", "[]");
+            basket = JSON.parse(localStorage.getItem("cart"));
+            displayorder(basket);
+        }
+    });
+}
+
+// --- Pay / Checkout Function ---
+function pay() {
+    // Recalculate total to be safe
+    let currentTotal = displayorder(basket);
+    
+    if (currentTotal === 0 || basket.length === 0) {
+        Swal.fire({
+            icon: "info",
+            title: "Cart Empty",
+            text: "Your cart is empty. Add some products first!",
+            confirmButtonColor: "#0099ff"
+        });
+    } else {
+        Swal.fire({
+            icon: "success",
+            title: "Order Successful!",
+            html: `Thank you for your purchase!<br><b>Total: $${currentTotal.toFixed(2)}</b>`,
+            confirmButtonColor: "#0099ff"
+        });
+        // Clear cart after order (Optional)
+        localStorage.setItem("cart", "[]");
+        basket = [];
+        displayorder(basket);
     }
+}
+
+// Helper: Update LocalStorage
+function updateLocalStorage() {
+    localStorage.setItem("cart", JSON.stringify(basket));
 }

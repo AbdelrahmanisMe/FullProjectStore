@@ -1,636 +1,369 @@
-/* --- Global Reset & Body --- */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+/* --- 1. النافبار الاحترافي (تم التعديل) --- */
+
+/* شكل النافبار العائم للشاشات الكبيرة */
+/* --- شكل النافبار الاحترافي (تم التعديل: توسيط وإزالة هوامش) --- */
+.navbar-custom {
+    margin: 15px auto; /* يفضل في المنتصف */
+    width: 84%; /* زيادة العرض لغلق المسافات الجانبية */
+    max-width: 1400px; /* سمح له باتساع أكبر */
+    border-radius: 50px; 
+    
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    z-index: 1050;
+    transition: 0.3s;
+    
+    /* إصلاح التوزيع لملء الفراغ */
+    justify-content: space-between; 
 }
 
-body {
-    background-color: ghostwhite;
-    overflow-x: hidden;
-    overflow-y: auto;
-    height: auto;
+.navbar-custom:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: translateY(-2px);
+}
+
+/* إصلاح الريسبونسف (الموبايل) */
+@media (max-width: 991px) {
+    .navbar-custom {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important; /* لصق في الموبايل */
+        border-radius: 0 !important;
+        border-left: none !important;
+        border-right: none !important;
+        box-shadow: none !important;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+}
+    .search-wrapper { width: 100%; margin-bottom: 10px; }
+    .nav-link.link-hover { text-align: center; padding: 15px 0; }
+
+    /* توزيع العناصر */
+.navbar-custom .navbar-brand {
+    margin: 0;
+    margin-right: 40px; /* مسافة يسار الشعار */
+}
+
+/* الروابط */
+.navbar-custom .nav-link {
+    margin: 0 15px;
+}
+
+/* الأيقونات */
+.icon-pro {
+    padding: 10px 20px; /* توزيع الأيقونات */
+    margin-left: 10px;
+}
+
+/* تعديل خاص للموبايل عشان ما ينكسرش */
+@media (max-width: 991px) {
+    .navbar-custom {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        border-left: none !important;
+        border-right: none !important;
+        box-shadow: none !important;
+    }
+    .search-wrapper {
+        width: 100% !important;
+        margin-bottom: 15px;
+    }
+    .navbar-brand { margin-right: 0; }
+}
+
+/* الشعار */
+.brand-text {
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: 900;
+    font-size: 1.8rem;
+    color: #fff !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.brand-text span {
+    background: -webkit-linear-gradient(#00e1ff, #0099ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(0, 225, 255, 0.5);
+}
+
+/* الروابط مع التوهج */
+.nav-link.link-hover {
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    position: relative;
+    margin: 0 5px;
+    transition: 0.3s;
+    font-family: sans-serif;
+}
+.nav-link.link-hover:hover {
+    color: #00e1ff !important;
+    text-shadow: 0 0 10px rgba(0, 225, 255, 0.8);
+}
+.nav-link.link-hover::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #00e1ff;
+    transition: width 0.3s;
+}
+.nav-link.link-hover:hover::after { width: 100%; }
+
+/* البحث */
+.search-wrapper {
+    position: relative;
+    width: 450px !important; /* عرض كبير جداً */
+    margin: 0 20px; /* مسافات بسيطة فقط */
+}
+
+.search-pro {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    padding-right: 50px !important;
+    padding-left: 25px !important;
+    color: #fff !important;
+    font-size: 1.2rem !important; /* خط كبير */
+    height: 50px !important; /* ارتفاع كبير */
+    transition: 0.3s;
+}
+.search-pro:focus {
+    background: rgba(0, 0, 0, 0.4);
+    border-color: #00e1ff;
+    box-shadow: 0 0 15px rgba(0, 225, 255, 0.3);
+}
+.search-pro::placeholder { color: rgba(255, 255, 255, 0.6); font-size: 1.1rem; }
+.search-icon-pro {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.3rem; /* أيقونة كبيرة */
+    pointer-events: none;
+}
+
+/* الأيقونات */
+.icon-pro {
+    color: rgba(255, 255, 255, 0.8);
+    transition: 0.3s;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    display: flex; align-items: center;
+}
+.icon-pro:hover {
+    color: #fff !important;
+    background: rgba(255,255,255,0.15);
+    transform: scale(1.1);
+}
+.user-glow { text-shadow: 0 0 10px rgba(0, 225, 255, 0.6); }
+
+/* --- 2. استرجاع شكل الكروت الزجاجية (Glass Cards) --- */
+
+/* العرض العام للكروت */
+.glass-card {
+    /* خلفية زجاجية قوية */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    
+    /* حدود ناعمة */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    
+    /* ظل ناعم (Glow) */
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    
+    color: white;
+    transition: 0.3s ease;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* وضع الظلام للكروت */
+body.dark .glass-card {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(0, 132, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+}
+
+.glass-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.25);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+/* منطقة الصورة */
+.card-img-top-container {
+    height: 50%;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 15px;
+}
+
+.card-img-top {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    filter: drop-shadow(0 5px 5px rgba(0,0,0,0.2));
+}
+
+/* النصوص */
+.card-title {
+    font-weight: 800;
+    font-size: 1.1rem;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+.card-text {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+}
+
+/* السعر والتقييم */
+.price-glass {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #00e1ff;
+    text-shadow: 0 0 10px rgba(0, 225, 255, 0.5);
+}
+
+/* الأزرار (جملة ومتأثرة) */
+.btn-glass {
+    flex: 1;
+    height: 45px;
+    background: rgba(0, 132, 255, 0.6); /* أزرق زجاجي */
+    color: white;
+    border: none;
+    border-radius: 25px; /* شكل حبة */
+    box-shadow: 0 4px 15px rgba(0, 132, 255, 0.3);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+.btn-glass:hover {
+    background: #0084ff;
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(0, 132, 255, 0.5);
+}
+
+/* زر القلب الدائري */
+.btn-glass-icon {
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    border: none;
+    border-radius: 50%; /* دائرة */
+    color: #ff4757;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+.btn-glass-icon:hover {
+    background: #ff4757;
+    color: white;
+    transform: rotate(10deg) scale(1.1);
+}
+
+/* --- 3. Global & Background --- */
+body {
+    font-family: 'Segoe UI', sans-serif;
     min-height: 100vh;
+    color: white;
+    transition: 0.3s;
 }
 
 /* Light Mode */
 body.light {
     background: url("img/pexels-xabioregi-16451177.jpg") no-repeat center center/cover;
     background-attachment: fixed;
-    color: rgb(0, 217, 255);
 }
 
 /* Dark Mode */
 body.dark {
-    background: url("img/pexels-francesco-ungaro-998641.jpg") center center/cover;
+    background: url("img/pexels-francesco-ungaro-998641.jpg") no-repeat center center/cover;
     background-attachment: fixed;
+}
+
+/* --- 4. Swiper --- */
+.swiper { width: 101%; height: 450px; margin-top: 50px;}
+.swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
+
+/* --- 5. Forms & Inputs --- */
+.form-select-glass {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
     color: white;
-}
-
-/* --- Navbar --- */
-nav {
-    width: 95%;
-    max-width: 1400px;
-    margin: 10px auto;
-    height: 4rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    color: black;
-    border-radius: 15px;
-    padding: 0 20px;
-    backdrop-filter: blur(15px);
-    background-color: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    gap: 1rem;
-    position: relative;
-    z-index: 100;
-}
-
-.prand {
-    font-size: 1.8rem;
-    font-weight: 900;
-    font-family: 'Segoe UI';
-    color: inherit;
-    text-decoration: none;
-    cursor: default;
-}
-.prand span { color: rgb(0, 153, 255); }
-
-.linkss {
-    display: flex;
-    gap: 2.5rem;
-}
-.linkss a {
-    color: rgb(0, 255, 221);
-    font-size: 1.1rem;
-    font-weight: bolder;
-    font-style: italic;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    text-decoration: none;
-    transition: 0.3s;
-}
-.linkss a:hover { 
-    color: #fff; 
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    transform: scale(1.1);
-    transition: 0.3s;
-    border-bottom: #ff01dd;
-
-}
-
-.search-container {
-    position: relative;
-}
-.search-box {
-    height: 2.1rem;
-    width: 13rem;
-    font-family: 'Times New Roman', Times, serif;
-    border: 1px solid rgba(255,255,255,0.5);
-    background: rgba(255,255,255,0.2);
-    border-radius: 20px;
-    padding: 0 30px 0 10px;
-    color: inherit;
-}
-.search-box:focus-within {
-    outline: none;
-    background: rgba(255,255,255,0.4);
-}
-.search-icon {
-    position: absolute;
-    right: 0.5rem;
-    top: 7px;
-    width: 1.5rem;
-    height: 1.5rem;
-    cursor: pointer;
-    color: #00e1ff;
-}
-
-.nav-icons {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-}
-
-.icon, .coo {
-    color: rgb(0, 132, 255);
-    font-size: 1.2rem;
-    transition: 0.3s;
-    cursor: pointer;
-    text-shadow: 0 0 5px rgba(0,0,0,0.3);
-}
-
-#basket a {
-    position: relative;
-    color: inherit;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-}
-.cart-count {
-    position: absolute;
-    top: -8px;
-    right: -10px;
-    background-color: #ff4757;
-    color: white;
-    font-size: 0.7rem;
-    width: 18px;
-    height: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    font-weight: bold;
-}
-
-#navUser {
-    font-weight: 800;
-    font-size: 1rem;
-    margin: 0 5px;
-    text-transform: capitalize;
-    display: none;
-}
-
-#logoutBtn {
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    display: none;
-}
-
-/* --- Swiper --- */
-.swiper-container, .mySwiper {
-    height: 600px !important;
-    width: 100% !important;
-    max-width: 1400px !important;
-    margin: 20px auto !important;
-    border-radius: 20px !important;
-    overflow: hidden !important;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-.swiper-slide img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* --- Filter & Title --- */
-h1.title {
-    text-shadow: 0 0 10px rgba(0,0,0,0.5);
-    margin-top: 10px;
-    font-size: 2.5rem;
-    color: #fff;
-}
-
-.borderlefts {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin: 15px 0;
-    flex-wrap: wrap;
-}
-.filtering {
-    height: 2.5rem;
-    width: auto;
-    min-width: 160px;
-    padding: 0 15px;
-    border: 1px solid rgb(0, 195, 255);
-    border-radius: 25px;
-    outline: none;
-    cursor: pointer;
-    font-weight: 600;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-style: italic;
-    background: rgba(255,255,255,0.2);
-    backdrop-filter: blur(5px);
-    color: #0084ff;
-}
-
-/* --- Products Grid --- */
-#cards {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
-    width: 95%;
-    max-width: 1500px;
-    padding: 10px 1%;
-    margin-bottom: 50px;
-    margin: 0 auto;
-}
-
-/* --- Product Card (Glass/Blur Design) --- */
-.productcard {
-    height: 520px;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-    transition: transform 0.3s ease;
-    color: #000;
-    overflow: hidden;
-}
-
-body.dark .productcard {
-    background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(0, 132, 255, 0.2);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-}
-
-.productcard:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.25);
-    border-color: rgba(255, 255, 255, 0.6);
-}
-
-/* --- Image Section --- */
-.productcard .img {
-    height: 50%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 15px;
-}
-
-.productcard .img img {
-    max-width: 95%;
-    max-height: 95%;
-    object-fit: contain;
-    filter: drop-shadow(0 5px 5px rgba(0,0,0,0.2));
-}
-
-/* --- Description Section --- */
-.descrip {
-    height: 50%;
-    width: 100%;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: center;
-}
-
-.col {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.descrip .title {
-    font-size: 1rem;
-    font-weight: 800;
-    margin-bottom: 5px;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    color: #fff;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-}
-
-.description {
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.8);
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    margin-bottom: 5px;
-}
-
-.rate {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    margin: 2px 0;
-    font-size: 0.9rem;
-    color: #fff;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-}
-.rate .stars i {
-    color: gold;
-    font-size: 0.8rem;
-}
-
-.price {
-    font-size: 1.3rem;
-    font-weight: 800;
-    color: #00e1ff;
-    margin: 5px 0;
-    text-shadow: 0 0 5px rgba(0, 225, 255, 0.5);
-}
-
-/* --- Button Row (Heart Next to Add) --- */
-.row {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    gap: 10px;
-    margin-top: auto;
-}
-
-/* Add Button (Pill Shape) */
-.addto {
-    flex: 1;
-    height: 45px;
-    font-weight: 700;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    color: #fff;
-    background: rgba(0, 132, 255, 0.6);
-    box-shadow: 0 4px 15px rgba(0, 132, 255, 0.3);
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-.addto:hover {
-    background: #0084ff;
-    transform: scale(1.02);
-    box-shadow: 0 6px 20px rgba(0, 132, 255, 0.5);
-}
-
-/* Heart Button (Circular Next to Add) */
-.heart {
-    flex: 0 0 45px;
-    height: 45px;
-    border: none;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(5px);
-    color: #ff4757;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.3rem;
-    transition: 0.3s;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-.heart:hover {
-    background: #ff4757;
-    color: white;
-    transform: rotate(10deg) scale(1.1);
-}
-
-/* --- Welcome Message --- */
-.welcome-message {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 1000;
-    opacity: 0;
-    display: none;
-    transition: opacity 0.5s;
-}
-.back-black {
-    height: 100vh;
-    width: 100vw;
-    background-color: black;
-    z-index: 999;
-    opacity: 0.7;
-    position: fixed;
-    top: 0;
-    left: 0;
-}
-.message {
-    height: auto;
-    min-height: 13rem;
-    width: 24rem;
-    justify-self: center;
-    text-align: center;
-    color: black;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(15px);
-    font-size: 1.2rem;
-    border-radius: 12px;
-    box-shadow: 15px 15px 80px 15px rgba(0, 0, 0, 0.2);
-    transition: all 1s;
-    position: relative;
-    z-index: 1100;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 99px;
-}
-.message .image img {
-    height: 4.5rem;
-    width: 4.5rem;
-    margin-bottom: 10px;
-}
-.message button {
-    margin-top: 15px;
-    height: 2.5rem;
-    width: 8rem;
-    color: whitesmoke;
-    font-style: italic;
-    font-size: 1rem;
-    font-weight: 900;
-    background-color: rgb(0, 0, 0);
-    border: 1px solid black;
-    border-radius: 15px;
-    cursor: pointer;
-}
-
-.load {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-.loader {
-    width: 5rem;
-    height: 5rem;
-    border-radius: 50%;
-    display: none;
-    border: 4px solid rgba(0, 132, 255, 0.1);
-    border-left-color: rgb(0, 132, 255);
-    box-sizing: border-box;
-    animation: rotation 1s linear infinite;
-}
-@keyframes rotation {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-#mobileMenu {
-    border-radius: 30px;
-    padding: 5px 15px;
-    border: 1px solid rgba(255,255,255,0.5);
-    background: rgba(255,255,255,0.2);
-    font-weight: 700;
-    cursor: pointer;
-    display: none;
-    color: #00e1ff;
-    width: auto;
     backdrop-filter: blur(5px);
 }
+.form-select-glass option { background: #333; color: white; }
 
-/* --- Responsive --- */
-@media (max-width: 1100px) {
-    #cards { grid-template-columns: repeat(3, 1fr); }
-}
-
-@media (max-width: 800px) {
-    nav {
-        flex-direction: row;
-        height: auto;
-        padding: 10px;
-        justify-content: space-between;
-        margin-bottom: 10px;
-    }
-    .linkss { display: none; }
-    #mobileMenu { display: block; }
-    .search-box, .search-icon { display: none; }
-    .nav-icons { gap: 1rem; }
-    .borderlefts { flex-direction: column; align-items: center; }
-    .title { font-size: 1.5rem; }
-    .message { height: auto; width: 18rem; }
-    .message .image img { height: 3rem; width: 3rem; }
-    
-    #cards {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-        padding: 10px;
-    }
-    .productcard { height: 480px; }
-    .descrip .title { font-size: 0.9rem; }
-    .price { font-size: 1.1rem; }
-    .addto { font-size: 0.8rem; }
-    .heart { width: 40px; height: 40px; font-size: 1.1rem; }
-    
-    .swiper-container { height: 250px; width: 98%; }
-}
-
-@media (max-width: 550px) {
-    #cards { grid-template-columns: 1fr; }
-    .productcard { height: 450px; }
-}
-
-/* =========================================
-   Auth Pages Styles (sign.css logic integrated)
-   ========================================= */
-.container {
+/* --- 6. Auth Pages --- */
+.auth-wrapper {
+    min-height: 100vh;
     display: flex;
-    width: 380px;
-    padding: 35px 30px;
-    border-radius: 20px;
+    align-items: center;
+    justify-content: center;
+}
+.auth-box {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 40px;
+    border-radius: 20px;
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
-    color: #0099ff;
-    margin: 50px auto;
-}
-
-.left {
-    display: none; /* Hiding the image as per the specific CSS provided */
-}
-
-.right {
     width: 100%;
+    max-width: 400px;
+    color: white;
 }
-
-.right h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    color: #fff;
+.auth-box input {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    margin-bottom: 15px;
 }
-
-.input-box {
-    position: relative;
-    margin-bottom: 22px;
-}
-
-.input-box i {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #9fd3ff;
-    font-size: 14px;
-}
-
-.input-box input {
-    width: 100%;
-    padding: 12px 15px;
+.auth-box button {
+    background: #0099ff;
     border: none;
-    outline: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-    background: transparent;
-    color: #fff;
-    font-size: 14px;
-}
-
-.input-box input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-button#loginBtn, button#signupBtn {
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
     width: 100%;
-    padding: 12px;
-    margin-top: 15px;
-    border: none;
-    border-radius: 25px;
-    background-color: transparent;
-    border: 1px solid #9fd3ff;
-    color: #00b7ff;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s;
+    margin-top: 10px;
 }
 
-button#loginBtn:hover, button#signupBtn:hover {
-    background: #0269708a;
+/* --- 7. Welcome Message --- */
+.welcome-message {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6); z-index: 2000; display: none;
+    justify-content: center; align-items: center;
 }
+.message {
+    background: white; color: black; padding: 30px; border-radius: 15px; text-align: center;
+    width: 300px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+.image img { width: 80px; margin-bottom: 10px; }
 
-.social {
-    display: none;
-}
-
-.switch {
-    margin-top: 20px;
-    text-align: center;
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.switch a {
-    color: #9fd3ff;
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.switch a:hover {
-    text-decoration: underline;
-}
