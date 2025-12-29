@@ -22,8 +22,16 @@ if (savetheme == "dark") {
 
 // --- Cart Logic ---
 let items = document.querySelector(".grid");
-let basket = JSON.parse(localStorage.getItem("cart"));
+let basket = JSON.parse(localStorage.getItem("cart")) || [];
 let total = 0;
+
+// دالة لتحديث الرقم فوق أيقونة السلة
+function updateBadge() {
+    let cartBadge = document.querySelector(".cart-count");
+    if (cartBadge) {
+        cartBadge.innerText = basket.length;
+    }
+}
 
 function displayorder(basket) {
     total = 0;
@@ -36,11 +44,12 @@ function displayorder(basket) {
                 <i class="fa-solid fa-cart-shopping" style="font-size: 3rem; margin-bottom: 15px; opacity: 0.5;"></i>
                 <h2 style="font-weight: bold;">Your Cart is Empty</h2>
             </div>`;
+        // تحديث الرقم للصفر
+        updateBadge();
         return 0;
     }
 
     basket.forEach(product => {
-        // ملاحظة: أزلتنا كل style="color:black" عشان الـ CSS يتولى الأمر
         items.innerHTML += `
             <div class="item">
                 <div class="row">
@@ -59,13 +68,14 @@ function displayorder(basket) {
                     <button onclick="increase(${product.id})">+</button>
                 </div>
                 <div class="del" onclick="removeitem(${product.id})">
-                    <!-- استبدال الـ SVG بأيقونة FontAwesome -->
                     <i class="fa-solid fa-trash-can"></i>
                 </div>
             </div>`;
         total += product.price * product.quantity;
     });
-
+    
+    // تحديث الرقم بعد كل عرض
+    updateBadge();
     return total;
 }
 
@@ -80,7 +90,7 @@ function decrease(id) {
         }
     });
     displayorder(basket);
-    updateLocalStorage(); // تحديث التخزين
+    updateLocalStorage();
 }
 
 // --- Increase Quantity ---
@@ -91,7 +101,7 @@ function increase(id) {
         }
     });
     displayorder(basket);
-    updateLocalStorage(); // تحديث التخزين
+    updateLocalStorage();
 }
 
 // --- Remove Single Item ---
@@ -107,28 +117,36 @@ let removeitem = (id) => {
     }).then((result) => {
         if (result.isConfirmed) {
             basket = basket.filter(product => product.id != id);
-            updateLocalStorage(); // تحديث التخزين
-            displayorder(basket);
+            updateLocalStorage();
+            displayorder(basket); // displayorder هتحدث البادج تلقائياً
         }
     });
 }
 
 // --- Clear Cart Function ---
 function removecart() {
-    Swal.fire({
-        title: 'Clear Cart?',
-        text: "Are you sure you want to clear all items?",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#d33',
-        confirmButtonText: 'Yes, Clear it'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            localStorage.setItem("cart", "[]");
-            basket = JSON.parse(localStorage.getItem("cart"));
-            displayorder(basket);
-        }
-    });
+    if (basket.length > 0) {
+        Swal.fire({
+            title: 'Clear Cart?',
+            text: "Are you sure you want to clear all items?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            confirmButtonText: 'Yes, Clear it'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                localStorage.setItem("cart", "[]");
+                basket = JSON.parse(localStorage.getItem("cart"));
+                displayorder(basket); // هنا هيظهر "Cart Empty" والرقم هيصفر
+            }
+        });
+    } else {
+        Swal.fire({
+            icon: "info",
+            title: "Cart Empty",
+            text: `Purchases cart empty $${total}`,
+        });
+    }
 }
 
 // --- Pay / Checkout Function ---
@@ -153,11 +171,11 @@ function pay() {
         // Clear cart after order (Optional)
         localStorage.setItem("cart", "[]");
         basket = [];
-        displayorder(basket);
+        displayorder(basket); // هنا هيصفر الرقم فوق السلة
     }
 }
 
-// Helper: Update LocalStorage
+// --- Helper: Update LocalStorage ---
 function updateLocalStorage() {
     localStorage.setItem("cart", JSON.stringify(basket));
 }
